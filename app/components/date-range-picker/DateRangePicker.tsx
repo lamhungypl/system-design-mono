@@ -391,7 +391,7 @@ export function DateRangePicker({
           <RadioGroup
             className="flex flex-col py-1"
             value={activePreset}
-            onValueChange={(v) => handlePresetChange(v as string)}
+            onValueChange={handlePresetChange}
             aria-label="Date range presets"
             disabled={disabled}
           >
