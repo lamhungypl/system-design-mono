@@ -211,8 +211,32 @@ const MONTH_NAMES = [
   "September", "October", "November", "December",
 ]
 
+// Returns the highlight state for a given month cell relative to the range.
+// Compares by month boundaries (ignores day-within-month).
+function getMonthHighlight(
+  year: number,
+  month: number,
+  range: DateRange,
+): "none" | "single" | "start" | "end" | "in-range" {
+  const { start, end } = range
+  if (!start) return "none"
+
+  const thisMonth = new Date(year, month, 1).getTime()
+  const startMonth = new Date(start.getFullYear(), start.getMonth(), 1).getTime()
+  const endMonth = end
+    ? new Date(end.getFullYear(), end.getMonth(), 1).getTime()
+    : startMonth
+
+  if (thisMonth === startMonth && thisMonth === endMonth) return "single"
+  if (thisMonth === startMonth) return "start"
+  if (thisMonth === endMonth) return "end"
+  if (thisMonth > startMonth && thisMonth < endMonth) return "in-range"
+  return "none"
+}
+
 function MonthGridView({
   year,
+  range,
   onPrevYear,
   onNextYear,
   onPrevDecade,
@@ -220,6 +244,7 @@ function MonthGridView({
   onMonthSelect,
 }: {
   year: number
+  range: DateRange
   onPrevYear: () => void
   onNextYear: () => void
   onPrevDecade: () => void
@@ -250,18 +275,44 @@ function MonthGridView({
         </NavButton>
       </div>
 
-      <div className="grid grid-cols-3 gap-1" role="grid" aria-label="Select month">
-        {MONTH_NAMES.map((m, i) => (
-          <button
-            key={m}
-            type="button"
-            role="gridcell"
-            onClick={() => onMonthSelect(i)}
-            className="rounded-md px-2 py-2.5 text-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            {m}
-          </button>
-        ))}
+      {/* No gap between cells — wrappers provide a connected strip background */}
+      <div className="grid grid-cols-3" role="grid" aria-label="Select month">
+        {MONTH_NAMES.map((m, i) => {
+          const highlight = getMonthHighlight(year, i, range)
+          const isSelected =
+            highlight === "start" || highlight === "end" || highlight === "single"
+
+          return (
+            <div
+              key={m}
+              className={cn(
+                // Strip background via gradient so only half the cell is coloured on caps
+                highlight === "in-range" && "bg-primary/15",
+                highlight === "start" &&
+                  "bg-gradient-to-r from-transparent from-50% to-primary/15 to-50%",
+                highlight === "end" &&
+                  "bg-gradient-to-l from-transparent from-50% to-primary/15 to-50%",
+              )}
+            >
+              <button
+                type="button"
+                role="gridcell"
+                onClick={() => onMonthSelect(i)}
+                aria-selected={highlight !== "none"}
+                aria-label={m}
+                className={cn(
+                  "relative z-10 w-full rounded-full py-2.5 text-sm transition-colors",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  isSelected
+                    ? "bg-primary font-semibold text-primary-foreground"
+                    : "hover:bg-accent hover:text-accent-foreground",
+                )}
+              >
+                {m}
+              </button>
+            </div>
+          )
+        })}
       </div>
     </div>
   )
@@ -358,6 +409,7 @@ export function DateRangePicker({
         {viewMode === "months" ? (
           <MonthGridView
             year={openToDate.getFullYear()}
+            range={{ start: startDate, end: endDate }}
             onPrevYear={() => shiftYear(-1)}
             onNextYear={() => shiftYear(1)}
             onPrevDecade={() => shiftYear(-10)}
