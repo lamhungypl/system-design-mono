@@ -87,6 +87,14 @@
     opacity: 0.4;
   }
 
+  /* Single date selected (before end date is picked) */
+  .react-datepicker__day--selected {
+    background-color: var(--color-primary) !important;
+    color: var(--color-primary-foreground) !important;
+    border-radius: 9999px !important;
+    font-weight: 600;
+  }
+
   /* ── Range strip ── */
 
   /* Days inside the range (not start/end) get a strip via pseudo-element */
