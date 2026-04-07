@@ -37,6 +37,7 @@ function NavButton({
           ? "text-muted-foreground/40 hover:bg-muted hover:text-muted-foreground"
           : "text-muted-foreground hover:bg-muted hover:text-foreground",
       )}
+      type="button"
       onClick={onClick}
       aria-label={ariaLabel}
     >
@@ -70,6 +71,7 @@ function DayViewHeader({
       </NavButton>
 
       <button
+        type="button"
         className="flex flex-1 cursor-pointer items-center justify-center rounded-md px-2 py-1 text-sm font-medium transition-colors hover:bg-accent"
         onClick={onTitleClick}
         aria-label={`Switch to month picker, currently showing ${title}`}
@@ -140,6 +142,7 @@ function MonthGridView({
         {MONTH_NAMES.map((m, i) => (
           <button
             key={m}
+            type="button"
             role="gridcell"
             onClick={() => onMonthSelect(i)}
             className="rounded-md px-2 py-2.5 text-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
