@@ -94,7 +94,7 @@ export default function DateRangePickerPage() {
       <div className="w-full max-w-2xl space-y-2">
         <h2 className="text-base font-semibold">Compound composition</h2>
         <p className="text-sm text-muted-foreground">
-          Explicit children — Calendar only, no preset panel.
+          Caller controls the child tree — render only what you need.
         </p>
         <DateRangePicker>
           <DateRangePicker.Calendar />
