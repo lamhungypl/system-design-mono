@@ -62,7 +62,10 @@ export function DateRangePickerRoot({
     calendarSlot?.openToDate ?? new Date(),
   )
 
-  // Default layout when no children are provided
+  // Default layout when no children are provided.
+  // presetsSlot.hidden is checked here so the component is never mounted in the
+  // default layout. When children are provided explicitly, callers control rendering
+  // and this guard is not reached.
   const content = children ?? (
     <>
       <DateRangePickerCalendar />
@@ -91,7 +94,7 @@ export function DateRangePickerRoot({
           "flex w-full max-w-2xl overflow-hidden rounded-xl border border-border bg-card shadow-sm",
           disabled && "pointer-events-none opacity-60",
         )}
-        aria-disabled={disabled}
+        aria-disabled={disabled || undefined}
         data-name={name}
       >
         {content}
