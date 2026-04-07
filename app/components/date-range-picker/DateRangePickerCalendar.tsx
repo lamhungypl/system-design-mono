@@ -182,7 +182,7 @@ function MonthGridView({
                 type="button"
                 role="gridcell"
                 onClick={() => onMonthSelect(i)}
-                aria-selected={highlight !== "none"}
+                aria-selected={isSelected}
                 aria-label={m}
                 className={cn(
                   "relative z-10 w-full rounded-full py-2.5 text-sm transition-colors",
@@ -262,9 +262,9 @@ export function DateRangePickerCalendar(props: CalendarSlotProps) {
           minDate={minDate}
           maxDate={maxDate}
           disabled={disabled}
-          renderCustomHeader={(props) => (
+          renderCustomHeader={(headerProps) => (
             <DayViewHeader
-              {...props}
+              {...headerProps}
               onTitleClick={() => setViewMode("months")}
             />
           )}
