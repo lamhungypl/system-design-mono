@@ -37,7 +37,6 @@ function NavButton({
           ? "text-muted-foreground/40 hover:bg-muted hover:text-muted-foreground"
           : "text-muted-foreground hover:bg-muted hover:text-foreground",
       )}
-      type="button"
       onClick={onClick}
       aria-label={ariaLabel}
     >
