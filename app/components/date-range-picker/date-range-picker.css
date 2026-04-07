@@ -1,0 +1,161 @@
+@import "react-datepicker/dist/react-datepicker.css";
+
+.rdp-custom {
+  /* Remove react-datepicker's own border/shadow — wrapper handles it */
+  .react-datepicker {
+    font-family: inherit;
+    border: 0;
+    background: transparent;
+    width: 100%;
+  }
+
+  .react-datepicker__header {
+    background: transparent;
+    border-bottom: 0;
+    padding: 0;
+  }
+
+  .react-datepicker__month-container {
+    width: 100%;
+    float: none;
+  }
+
+  .react-datepicker__month {
+    margin: 0;
+  }
+
+  .react-datepicker__week {
+    display: flex;
+    align-items: center;
+  }
+
+  .react-datepicker__day-names {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .react-datepicker__day-name {
+    width: 2.25rem;
+    line-height: 2rem;
+    text-align: center;
+    color: var(--color-muted-foreground);
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin: 0;
+    flex: 1;
+  }
+
+  /* ── Day cells ── */
+  .react-datepicker__day {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    color: var(--color-foreground);
+    transition: background-color 150ms, color 150ms;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+  }
+
+  .react-datepicker__day:hover:not([aria-disabled="true"]):not(.react-datepicker__day--in-range):not(.react-datepicker__day--in-selecting-range) {
+    background-color: var(--color-accent);
+    color: var(--color-accent-foreground);
+    border-radius: 9999px;
+  }
+
+  .react-datepicker__day--keyboard-selected {
+    background-color: transparent;
+    color: var(--color-foreground);
+  }
+
+  /* Today */
+  .react-datepicker__day--today {
+    font-weight: 600;
+    background-color: transparent;
+    color: var(--color-foreground);
+  }
+
+  /* Outside current month */
+  .react-datepicker__day--outside-month {
+    opacity: 0.4;
+  }
+
+  /* ── Range strip ── */
+
+  /* Days inside the range (not start/end) get a strip via pseudo-element */
+  .react-datepicker__day--in-range,
+  .react-datepicker__day--in-selecting-range {
+    background-color: transparent !important;
+    color: var(--color-foreground) !important;
+    border-radius: 0 !important;
+  }
+
+  .react-datepicker__day--in-range::before,
+  .react-datepicker__day--in-selecting-range::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: color-mix(in oklch, var(--color-primary) 15%, transparent);
+    z-index: -1;
+    border-radius: 0;
+  }
+
+  /* Range start cap */
+  .react-datepicker__day--range-start,
+  .react-datepicker__day--selecting-range-start {
+    background-color: var(--color-primary) !important;
+    color: var(--color-primary-foreground) !important;
+    border-radius: 9999px !important;
+    font-weight: 600;
+  }
+
+  /* Half-strip extending right from start cap */
+  .react-datepicker__day--range-start::before,
+  .react-datepicker__day--selecting-range-start::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: 0;
+    background-color: color-mix(in oklch, var(--color-primary) 15%, transparent);
+    z-index: -1;
+    border-radius: 0;
+  }
+
+  /* Range end cap */
+  .react-datepicker__day--range-end,
+  .react-datepicker__day--selecting-range-end {
+    background-color: var(--color-primary) !important;
+    color: var(--color-primary-foreground) !important;
+    border-radius: 9999px !important;
+    font-weight: 600;
+  }
+
+  /* Half-strip extending left from end cap */
+  .react-datepicker__day--range-end::before,
+  .react-datepicker__day--selecting-range-end::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 50%;
+    background-color: color-mix(in oklch, var(--color-primary) 15%, transparent);
+    z-index: -1;
+    border-radius: 0;
+  }
+
+  /* Single day selected (start == end) — no strip, just circle */
+  .react-datepicker__day--range-start.react-datepicker__day--range-end::before,
+  .react-datepicker__day--selecting-range-start.react-datepicker__day--selecting-range-end::before {
+    display: none;
+  }
+}
