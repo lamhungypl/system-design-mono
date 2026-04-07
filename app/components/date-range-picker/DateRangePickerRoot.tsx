@@ -26,6 +26,10 @@ export interface DateRangePickerProps {
    * (Calendar + Presets) is rendered automatically.
    */
   children?: React.ReactNode
+  /**
+   * Slot-level customization for sub-components.
+   * `slotProps.calendar.openToDate` only sets the initial displayed month — changes after mount are ignored.
+   */
   slotProps?: {
     calendar?: CalendarSlotProps
     presets?: PresetsSlotProps
