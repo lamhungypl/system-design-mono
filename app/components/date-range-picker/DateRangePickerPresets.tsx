@@ -44,6 +44,7 @@ export function DateRangePickerPresets(props: PresetsSlotProps) {
       setOpenToDate(r.start)
     } else {
       commitRange({ start: null, end: null })
+      setOpenToDate(new Date())
     }
     setViewMode("days")
   }
@@ -78,7 +79,6 @@ export function DateRangePickerPresets(props: PresetsSlotProps) {
           <Radio.Root
             key={p.id}
             value={p.id}
-            disabled={disabled}
             className={cn(
               "flex w-full cursor-pointer items-center px-4 py-2.5 text-sm transition-colors",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",

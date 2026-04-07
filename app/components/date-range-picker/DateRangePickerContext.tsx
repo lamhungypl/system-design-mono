@@ -12,7 +12,10 @@ export interface CalendarSlotProps {
 export interface PresetsSlotProps {
   /** Override the default preset list. */
   presets?: Preset[]
-  /** Hide the preset panel entirely; calendar fills full width. */
+  /**
+   * Hide the preset panel entirely; calendar fills full width.
+   * Only effective when passed via `slotProps.presets` on Root — ignored as a direct prop on `<DateRangePicker.Presets />`.
+   */
   hidden?: boolean
   className?: string
 }
