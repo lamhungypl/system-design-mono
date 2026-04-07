@@ -12,7 +12,7 @@ export interface DateRange {
 }
 
 export interface Preset {
-  id: PresetId
+  id: string
   label: string
   getRange?: () => { start: Date; end: Date }
 }
