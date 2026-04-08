@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { DateRangePicker } from "~/components/date-range-picker/DateRangePicker"
-import { DateRangeSelect } from "~/components/date-range-select/DateRangeSelect"
+import { RangePicker } from "~/components/range-picker/RangePicker"
 import type { DateRange } from "~/lib/dateUtils"
 
 export default function DateRangePickerPage() {
@@ -103,11 +103,11 @@ export default function DateRangePickerPage() {
       </div>
 
       <div className="w-full max-w-2xl space-y-2">
-        <h2 className="text-base font-semibold">DateRangeSelect</h2>
+        <h2 className="text-base font-semibold">RangePicker</h2>
         <p className="text-sm text-muted-foreground">
-          Compact select-style trigger. Custom range opens a calendar panel.
+          Compact trigger with calendar popover.
         </p>
-        <DateRangeSelect />
+        <RangePicker />
       </div>
     </div>
   )
