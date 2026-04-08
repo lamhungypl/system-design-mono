@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 import { cn } from "~/lib/utils"
@@ -26,6 +27,16 @@ export function MonthGridView({
   onNextDecade: () => void
   onMonthSelect: (month: number) => void
 }) {
+  const gridRef = useRef<HTMLDivElement>(null)
+
+  // Focus the first month cell on mount
+  useEffect(() => {
+    const grid = gridRef.current
+    if (!grid) return
+    const btn = grid.querySelector<HTMLButtonElement>("button")
+    btn?.focus()
+  }, [])
+
   return (
     <div>
       <div className="mb-4 flex items-center gap-1">
@@ -50,7 +61,12 @@ export function MonthGridView({
         </NavButton>
       </div>
 
-      <div className="grid grid-cols-3" role="grid" aria-label="Select month">
+      <div
+        ref={gridRef}
+        className="grid grid-cols-3"
+        role="grid"
+        aria-label="Select month"
+      >
         {MONTH_NAMES.map((m, i) => {
           const isSelected =
             selected !== null &&
