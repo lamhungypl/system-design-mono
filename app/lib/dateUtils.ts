@@ -76,3 +76,27 @@ export const PRESETS: Preset[] = [
     label: "Custom range",
   },
 ]
+
+// ── Antd-style preset types ───────────────────────────────────────────────
+
+export interface DatePreset {
+  label: string
+  /** When omitted the preset acts as a "Custom" trigger — keeps the popover open for calendar selection. */
+  value?: Date | (() => Date)
+}
+
+export interface RangePreset {
+  label: string
+  /** When omitted the preset acts as a "Custom range" trigger — keeps the popover open for calendar selection. */
+  value?: [Date, Date] | (() => [Date, Date])
+}
+
+export function resolveDatePreset(p: DatePreset): Date | null {
+  if (p.value == null) return null
+  return typeof p.value === "function" ? p.value() : p.value
+}
+
+export function resolveRangePreset(p: RangePreset): [Date, Date] | null {
+  if (p.value == null) return null
+  return typeof p.value === "function" ? p.value() : p.value
+}

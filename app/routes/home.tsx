@@ -12,6 +12,8 @@ const nav = [
       { label: "Dialog Demo", href: "/dialog", icon: <DialogIcon /> },
       { label: "Collapsible", href: "/collapsible", icon: <CollapsibleIcon /> },
       { label: "Date Range", href: "/date-range", icon: <DateIcon /> },
+      { label: "Date Picker", href: "/date-picker", icon: <DateIcon /> },
+      { label: "Range Picker", href: "/range-picker", icon: <DateIcon /> },
     ],
   },
   {

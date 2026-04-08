@@ -75,6 +75,11 @@
     color: var(--color-foreground);
   }
 
+  .react-datepicker__day:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-ring);
+  }
+
   /* Today */
   .react-datepicker__day--today {
     font-weight: 600;
