@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { CalendarIcon } from "lucide-react"
+import { Select } from "@base-ui/react/select"
 
 import { cn } from "~/lib/utils"
 import { PRESETS, formatDate, type DateRange, type Preset } from "~/lib/dateUtils"
@@ -28,10 +29,7 @@ export interface DateRangeSelectProps {
 
 // ── Trigger label ──────────────────────────────────────────────────────────
 
-function getTriggerLabel(
-  effectiveRange: DateRange,
-  placeholder: string,
-): string {
+function getTriggerLabel(effectiveRange: DateRange, placeholder: string): string {
   const { start, end } = effectiveRange
   if (start && end) return `${formatDate(start)} → ${formatDate(end)}`
   if (start) return `${formatDate(start)} → ...`
@@ -107,75 +105,65 @@ export function DateRangeSelect({
   const [open, setOpen] = useState(false)
   const [activePreset, setActivePreset] = useState<string>("custom")
 
-  // Refs for positioning and click-outside
-  const triggerRef = useRef<HTMLButtonElement>(null)
-  const presetPanelRef = useRef<HTMLDivElement>(null)
+  // When "Custom range" is selected, we intercept the Select's close in onOpenChange.
+  // onValueChange fires before onOpenChange, so we use a ref to pass that signal.
+  const justSelectedCustomRef = useRef(false)
+
+  // Refs for calendar panel positioning and click-outside detection
+  const presetPopupRef = useRef<HTMLDivElement>(null)  // on Select.Popup
+  const customItemRef = useRef<HTMLDivElement>(null)   // on the "Custom range" Select.Item
   const calendarPanelRef = useRef<HTMLDivElement>(null)
 
-  // Roving tabindex for preset list
-  const presetItemRefs = useRef<(HTMLButtonElement | null)[]>([])
-  const [focusedPresetIndex, setFocusedPresetIndex] = useState(0)
+  // ── Preset selection ───────────────────────────────────────────────────
 
-  // Sync focus position when activePreset changes
-  useEffect(() => {
-    const i = presets.findIndex((p) => p.id === activePreset)
-    if (i >= 0) setFocusedPresetIndex(i)
-  }, [activePreset]) // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Preset list position: fixed, right-aligned to trigger.
-  // Opens below by default; flips above when there's not enough space below.
-  const [presetPos, setPresetPos] = useState<{
-    top?: number
-    bottom?: number
-    right: number
-  } | null>(null)
-
-  const updatePresetPos = useCallback(() => {
-    if (!triggerRef.current) return
-    const r = triggerRef.current.getBoundingClientRect()
-    const estimatedHeight = presets.length * 40 + 8
-    const spaceBelow = window.innerHeight - r.bottom
-    const right = window.innerWidth - r.right
-    if (spaceBelow < estimatedHeight && r.top > spaceBelow) {
-      // Flip above
-      setPresetPos({ bottom: window.innerHeight - r.top + 4, right })
-    } else {
-      setPresetPos({ top: r.bottom + 4, right })
+  function handleValueChange(newValue: string | null) {
+    if (!newValue) return
+    setActivePreset(newValue)
+    if (newValue === "custom") {
+      justSelectedCustomRef.current = true
+      return // calendar will appear; don't commit a range
     }
-  }, [presets.length])
+    const p = presets.find((x) => x.id === newValue)
+    if (p?.getRange) commitRange(p.getRange())
+  }
 
-  useEffect(() => {
-    if (!open) return
-    updatePresetPos()
-    const observer = new ResizeObserver(updatePresetPos)
-    if (triggerRef.current) observer.observe(triggerRef.current)
-    window.addEventListener("resize", updatePresetPos)
-    window.addEventListener("scroll", updatePresetPos, true)
-    return () => {
-      observer.disconnect()
-      window.removeEventListener("resize", updatePresetPos)
-      window.removeEventListener("scroll", updatePresetPos, true)
+  function handleOpenChange(
+    isOpen: boolean,
+    eventDetails: { reason: string; event: Event },
+  ) {
+    // If "Custom range" was just selected, keep the Select open so the
+    // calendar panel appears alongside the preset list.
+    if (!isOpen && justSelectedCustomRef.current) {
+      justSelectedCustomRef.current = false
+      return
     }
-  }, [open, updatePresetPos])
+    // If the click that triggered an outside-press was inside our calendar
+    // panel, don't close the Select.
+    if (!isOpen && eventDetails.reason === "outside-press") {
+      const target = eventDetails.event.target
+      if (target instanceof Node && calendarPanelRef.current?.contains(target)) {
+        return
+      }
+    }
+    setOpen(isOpen)
+  }
 
-  // Calendar panel position: fixed, left of preset list, bottom-aligned
+  // ── Calendar panel positioning ─────────────────────────────────────────
+
   const [calendarPos, setCalendarPos] = useState<{ bottom: number; right: number } | null>(null)
   const showCalendar = open && activePreset === "custom"
 
   const updateCalendarPos = useCallback(() => {
-    if (!presetPanelRef.current) return
-    // Anchor to the "Custom range" item if available, otherwise the panel bottom.
-    const customIndex = presets.findIndex((p) => p.id === "custom")
-    const anchor =
-      (customIndex >= 0 ? presetItemRefs.current[customIndex] : null) ??
-      presetPanelRef.current
+    if (!presetPopupRef.current) return
+    // Anchor bottom to the "Custom range" item for precise alignment.
+    const anchor = customItemRef.current ?? presetPopupRef.current
     const ar = anchor.getBoundingClientRect()
-    const pr = presetPanelRef.current.getBoundingClientRect()
+    const pr = presetPopupRef.current.getBoundingClientRect()
     setCalendarPos({
       bottom: window.innerHeight - ar.bottom,
       right: window.innerWidth - pr.left + 8,
     })
-  }, [presets]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     if (!showCalendar) {
@@ -183,10 +171,10 @@ export function DateRangeSelect({
       return
     }
     // Defer one frame to ensure the portal has committed to the DOM and
-    // presetPanelRef.current is attached before measuring.
+    // presetPopupRef.current is attached before measuring.
     const frame = requestAnimationFrame(updateCalendarPos)
     const observer = new ResizeObserver(updateCalendarPos)
-    if (presetPanelRef.current) observer.observe(presetPanelRef.current)
+    if (presetPopupRef.current) observer.observe(presetPopupRef.current)
     window.addEventListener("resize", updateCalendarPos)
     window.addEventListener("scroll", updateCalendarPos, true)
     return () => {
@@ -197,140 +185,59 @@ export function DateRangeSelect({
     }
   }, [showCalendar, updateCalendarPos])
 
-  // Esc key — USE setOpen(false) DIRECTLY to avoid stale closure
-  useEffect(() => {
-    if (!open) return
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") {
-        setOpen(false)
-        triggerRef.current?.focus()
-      }
-    }
-    document.addEventListener("keydown", handleKeyDown)
-    return () => document.removeEventListener("keydown", handleKeyDown)
-  }, [open])
-
-  // Click outside (all three elements: trigger, preset panel, calendar panel)
-  // USE setOpen(false) DIRECTLY to avoid stale closure; add instanceof Node guard
-  useEffect(() => {
-    if (!open) return
-    function handlePointerDown(e: PointerEvent) {
-      const target = e.target
-      if (!(target instanceof Node)) { setOpen(false); return }
-      if (
-        triggerRef.current?.contains(target) ||
-        presetPanelRef.current?.contains(target) ||
-        calendarPanelRef.current?.contains(target)
-      )
-        return
-      setOpen(false)
-    }
-    document.addEventListener("pointerdown", handlePointerDown)
-    return () => document.removeEventListener("pointerdown", handlePointerDown)
-  }, [open])
-
-  // Preset commit
-  function commitPreset(id: string) {
-    const p = presets.find((x) => x.id === id)
-    if (!p) return
-    setActivePreset(id)
-    if (id === "custom") return // show calendar, stay open
-    if (p.getRange) commitRange(p.getRange())
-    setOpen(false)
-    triggerRef.current?.focus()
-  }
-
-  // Keyboard navigation inside preset list
-  function handlePresetKeyDown(e: React.KeyboardEvent, index: number) {
-    if (e.key === "ArrowDown") {
-      e.preventDefault()
-      const next = (index + 1) % presets.length
-      setFocusedPresetIndex(next)
-      presetItemRefs.current[next]?.focus()
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault()
-      const prev = (index - 1 + presets.length) % presets.length
-      setFocusedPresetIndex(prev)
-      presetItemRefs.current[prev]?.focus()
-    } else if (e.key === " " || e.key === "Enter") {
-      e.preventDefault()
-      commitPreset(presets[index].id)
-    }
-  }
-
   const label = getTriggerLabel(effectiveRange, placeholder)
 
   return (
     <>
-      {/* Trigger */}
-      <button
-        ref={triggerRef}
-        type="button"
-        onClick={() => setOpen((v) => !v)}
+      <Select.Root
+        value={activePreset}
+        onValueChange={handleValueChange}
+        open={open}
+        onOpenChange={handleOpenChange}
+        modal={false}
         disabled={disabled}
-        data-name={name}
-        aria-expanded={open}
-        aria-haspopup="listbox"
-        className={cn(
-          "inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium shadow-sm transition-colors",
-          "hover:bg-accent hover:text-accent-foreground",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-          disabled && "pointer-events-none opacity-60",
-        )}
+        name={name}
       >
-        <CalendarIcon className="size-4 shrink-0 text-muted-foreground" />
-        {label}
-      </button>
+        {/* Trigger */}
+        <Select.Trigger
+          className={cn(
+            "inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium shadow-sm transition-colors",
+            "hover:bg-accent hover:text-accent-foreground",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            disabled && "pointer-events-none opacity-60",
+          )}
+        >
+          <CalendarIcon className="size-4 shrink-0 text-muted-foreground" />
+          {label}
+        </Select.Trigger>
 
-      {/* Preset list panel */}
-      {open &&
-        presetPos &&
-        createPortal(
-          <div
-            ref={presetPanelRef}
-            role="listbox"
-            aria-label="Date range presets"
-            aria-orientation="vertical"
-            style={{
-              position: "fixed",
-              top: presetPos.top,
-              bottom: presetPos.bottom,
-              right: presetPos.right,
-              zIndex: 50,
-            }}
-            className="min-w-[10rem] overflow-hidden rounded-xl border border-border bg-card py-1 shadow-md"
-          >
-            {presets.map((p, i) => (
-              <button
-                key={p.id}
-                role="option"
-                ref={(el) => {
-                  presetItemRefs.current[i] = el
-                }}
-                tabIndex={i === focusedPresetIndex ? 0 : -1}
-                aria-selected={activePreset === p.id}
-                onClick={() => {
-                  setFocusedPresetIndex(i)
-                  commitPreset(p.id)
-                }}
-                onKeyDown={(e) => handlePresetKeyDown(e, i)}
-                className={cn(
-                  "flex w-full cursor-pointer items-center px-4 py-2.5 text-sm transition-colors",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
-                  "hover:bg-accent hover:text-accent-foreground",
-                  activePreset === p.id
-                    ? "bg-accent/60 font-medium text-accent-foreground"
-                    : "text-foreground",
-                )}
-              >
-                {p.label}
-              </button>
-            ))}
-          </div>,
-          document.body,
-        )}
+        {/* Preset list panel */}
+        <Select.Portal>
+          <Select.Positioner side="bottom" align="end" sideOffset={4} alignItemWithTrigger={false}>
+            <Select.Popup
+              ref={presetPopupRef}
+              className="min-w-[10rem] overflow-hidden rounded-xl border border-border bg-card py-1 shadow-md"
+            >
+              {presets.map((p) => (
+                <Select.Item
+                  key={p.id}
+                  value={p.id}
+                  ref={p.id === "custom" ? customItemRef : undefined}
+                  className={cn(
+                    "flex w-full cursor-pointer items-center px-4 py-2.5 text-sm transition-colors outline-none",
+                    "data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground",
+                    "data-[selected]:bg-accent/60 data-[selected]:font-medium data-[selected]:text-accent-foreground",
+                  )}
+                >
+                  <Select.ItemText>{p.label}</Select.ItemText>
+                </Select.Item>
+              ))}
+            </Select.Popup>
+          </Select.Positioner>
+        </Select.Portal>
+      </Select.Root>
 
-      {/* Calendar panel — only when Custom range is committed */}
+      {/* Calendar panel — only when Custom range is active */}
       {showCalendar &&
         calendarPos &&
         createPortal(
