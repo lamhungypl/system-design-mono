@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { DateRangePicker } from "~/components/date-range-picker/DateRangePicker"
+import { DateRangeSelect } from "~/components/date-range-select/DateRangeSelect"
 import type { DateRange } from "~/lib/dateUtils"
 
 export default function DateRangePickerPage() {
@@ -99,6 +100,11 @@ export default function DateRangePickerPage() {
         <DateRangePicker>
           <DateRangePicker.Calendar />
         </DateRangePicker>
+      </div>
+
+      <div className="w-full max-w-2xl space-y-2">
+        <h2 className="text-base font-semibold">DateRangeSelect (WIP)</h2>
+        <DateRangeSelect />
       </div>
     </div>
   )
