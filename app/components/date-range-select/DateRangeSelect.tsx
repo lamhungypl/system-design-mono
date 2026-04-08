@@ -128,14 +128,27 @@ export function DateRangeSelect({
     if (i >= 0) setFocusedPresetIndex(i)
   }, [activePreset]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Preset list position: fixed, below trigger, right-aligned to trigger
-  const [presetPos, setPresetPos] = useState<{ top: number; right: number } | null>(null)
+  // Preset list position: fixed, right-aligned to trigger.
+  // Opens below by default; flips above when there's not enough space below.
+  const [presetPos, setPresetPos] = useState<{
+    top?: number
+    bottom?: number
+    right: number
+  } | null>(null)
 
   const updatePresetPos = useCallback(() => {
     if (!triggerRef.current) return
     const r = triggerRef.current.getBoundingClientRect()
-    setPresetPos({ top: r.bottom + 4, right: window.innerWidth - r.right })
-  }, [])
+    const estimatedHeight = presets.length * 40 + 8
+    const spaceBelow = window.innerHeight - r.bottom
+    const right = window.innerWidth - r.right
+    if (spaceBelow < estimatedHeight && r.top > spaceBelow) {
+      // Flip above
+      setPresetPos({ bottom: window.innerHeight - r.top + 4, right })
+    } else {
+      setPresetPos({ top: r.bottom + 4, right })
+    }
+  }, [presets.length])
 
   useEffect(() => {
     if (!open) return
@@ -277,6 +290,7 @@ export function DateRangeSelect({
             style={{
               position: "fixed",
               top: presetPos.top,
+              bottom: presetPos.bottom,
               right: presetPos.right,
               zIndex: 50,
             }}
