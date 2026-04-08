@@ -29,15 +29,9 @@ export interface DateRangeSelectProps {
 // ── Trigger label ──────────────────────────────────────────────────────────
 
 function getTriggerLabel(
-  activePreset: string,
   effectiveRange: DateRange,
-  presets: Preset[],
   placeholder: string,
 ): string {
-  if (activePreset !== "custom") {
-    const p = presets.find((x) => x.id === activePreset)
-    return p?.label ?? placeholder
-  }
   const { start, end } = effectiveRange
   if (start && end) return `${formatDate(start)} → ${formatDate(end)}`
   if (start) return `${formatDate(start)} → ...`
@@ -254,7 +248,7 @@ export function DateRangeSelect({
     }
   }
 
-  const label = getTriggerLabel(activePreset, effectiveRange, presets, placeholder)
+  const label = getTriggerLabel(effectiveRange, placeholder)
 
   return (
     <>
