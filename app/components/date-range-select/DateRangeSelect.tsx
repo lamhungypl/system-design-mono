@@ -201,7 +201,10 @@ export function DateRangeSelect({
   useEffect(() => {
     if (!open) return
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false)
+      if (e.key === "Escape") {
+        setOpen(false)
+        triggerRef.current?.focus()
+      }
     }
     document.addEventListener("keydown", handleKeyDown)
     return () => document.removeEventListener("keydown", handleKeyDown)
@@ -234,6 +237,7 @@ export function DateRangeSelect({
     if (id === "custom") return // show calendar, stay open
     if (p.getRange) commitRange(p.getRange())
     setOpen(false)
+    triggerRef.current?.focus()
   }
 
   // Keyboard navigation inside preset list
