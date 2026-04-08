@@ -169,7 +169,8 @@ export function DateRangeSelect({
       setCalendarPos(null)
       return
     }
-    // Wait one frame for the preset panel to paint before measuring
+    // Defer one frame to ensure the portal has committed to the DOM and
+    // presetPanelRef.current is attached before measuring.
     const frame = requestAnimationFrame(updateCalendarPos)
     const observer = new ResizeObserver(updateCalendarPos)
     if (presetPanelRef.current) observer.observe(presetPanelRef.current)
@@ -183,12 +184,7 @@ export function DateRangeSelect({
     }
   }, [showCalendar, updateCalendarPos])
 
-  // Close everything
-  function closeAll() {
-    setOpen(false)
-  }
-
-  // Esc key — USE setOpen(false) DIRECTLY (not closeAll) to avoid stale closure
+  // Esc key — USE setOpen(false) DIRECTLY to avoid stale closure
   useEffect(() => {
     if (!open) return
     function handleKeyDown(e: KeyboardEvent) {
@@ -224,7 +220,7 @@ export function DateRangeSelect({
     setActivePreset(id)
     if (id === "custom") return // show calendar, stay open
     if (p.getRange) commitRange(p.getRange())
-    closeAll()
+    setOpen(false)
   }
 
   // Keyboard navigation inside preset list
@@ -253,7 +249,7 @@ export function DateRangeSelect({
       <button
         ref={triggerRef}
         type="button"
-        onClick={() => (open ? closeAll() : setOpen(true))}
+        onClick={() => setOpen((v) => !v)}
         disabled={disabled}
         data-name={name}
         aria-expanded={open}
@@ -322,6 +318,8 @@ export function DateRangeSelect({
         createPortal(
           <div
             ref={calendarPanelRef}
+            role="dialog"
+            aria-label="Select custom date range"
             style={{
               position: "fixed",
               bottom: calendarPos.bottom,
