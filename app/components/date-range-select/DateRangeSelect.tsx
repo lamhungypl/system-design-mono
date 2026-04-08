@@ -113,7 +113,7 @@ export function DateRangeSelect({
   useEffect(() => {
     if (!open) return
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") closeAll()
+      if (e.key === "Escape") setOpen(false)
     }
     document.addEventListener("keydown", handleKeyDown)
     return () => document.removeEventListener("keydown", handleKeyDown)
@@ -123,13 +123,14 @@ export function DateRangeSelect({
   useEffect(() => {
     if (!open) return
     function handlePointerDown(e: PointerEvent) {
-      const target = e.target as Node
+      const target = e.target
+      if (!(target instanceof Node)) { setOpen(false); return }
       if (
         triggerRef.current?.contains(target) ||
         presetPanelRef.current?.contains(target)
       )
         return
-      closeAll()
+      setOpen(false)
     }
     document.addEventListener("pointerdown", handlePointerDown)
     return () => document.removeEventListener("pointerdown", handlePointerDown)
