@@ -1,9 +1,12 @@
+// app/components/date-range-select/DateRangeSelect.tsx
 import { useCallback, useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { CalendarIcon } from "lucide-react"
 
 import { cn } from "~/lib/utils"
 import { PRESETS, formatDate, type DateRange, type Preset } from "~/lib/dateUtils"
+import { DateRangePickerContext } from "~/components/date-range-picker/DateRangePickerContext"
+import { DateRangePickerCalendar } from "~/components/date-range-picker/DateRangePickerCalendar"
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -41,6 +44,49 @@ function getTriggerLabel(
   return placeholder
 }
 
+// ── CalendarPanel ──────────────────────────────────────────────────────────
+// Wraps DateRangePickerCalendar with a minimal context provider.
+// Owns viewMode and openToDate state (calendar-specific, not part of DateRangeSelect state).
+
+function CalendarPanel({
+  effectiveRange,
+  commitRange,
+  activePreset,
+  setActivePreset,
+  disabled,
+}: {
+  effectiveRange: DateRange
+  commitRange: (next: DateRange) => void
+  activePreset: string
+  setActivePreset: (id: string) => void
+  disabled: boolean
+}) {
+  const [viewMode, setViewMode] = useState<"days" | "months">("days")
+  const [openToDate, setOpenToDate] = useState<Date>(
+    effectiveRange.start ?? new Date(),
+  )
+
+  return (
+    <DateRangePickerContext.Provider
+      value={{
+        effectiveRange,
+        commitRange,
+        activePreset,
+        setActivePreset,
+        viewMode,
+        setViewMode,
+        openToDate,
+        setOpenToDate,
+        disabled,
+        calendarSlot: undefined,
+        presetsSlot: undefined,
+      }}
+    >
+      <DateRangePickerCalendar />
+    </DateRangePickerContext.Provider>
+  )
+}
+
 // ── DateRangeSelect ────────────────────────────────────────────────────────
 
 export function DateRangeSelect({
@@ -70,18 +116,19 @@ export function DateRangeSelect({
   // Refs for positioning and click-outside
   const triggerRef = useRef<HTMLButtonElement>(null)
   const presetPanelRef = useRef<HTMLDivElement>(null)
+  const calendarPanelRef = useRef<HTMLDivElement>(null)
 
   // Roving tabindex for preset list
   const presetItemRefs = useRef<(HTMLButtonElement | null)[]>([])
   const [focusedPresetIndex, setFocusedPresetIndex] = useState(0)
 
-  // Sync focus position when activePreset changes externally
+  // Sync focus position when activePreset changes
   useEffect(() => {
     const i = presets.findIndex((p) => p.id === activePreset)
     if (i >= 0) setFocusedPresetIndex(i)
   }, [activePreset]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Preset list position (fixed, below trigger, right-aligned)
+  // Preset list position: fixed, below trigger, right-aligned to trigger
   const [presetPos, setPresetPos] = useState<{ top: number; right: number } | null>(null)
 
   const updatePresetPos = useCallback(() => {
@@ -104,12 +151,44 @@ export function DateRangeSelect({
     }
   }, [open, updatePresetPos])
 
+  // Calendar panel position: fixed, left of preset list, bottom-aligned
+  const [calendarPos, setCalendarPos] = useState<{ bottom: number; right: number } | null>(null)
+  const showCalendar = open && activePreset === "custom"
+
+  const updateCalendarPos = useCallback(() => {
+    if (!presetPanelRef.current) return
+    const r = presetPanelRef.current.getBoundingClientRect()
+    setCalendarPos({
+      bottom: window.innerHeight - r.bottom,
+      right: window.innerWidth - r.left + 8,
+    })
+  }, [])
+
+  useEffect(() => {
+    if (!showCalendar) {
+      setCalendarPos(null)
+      return
+    }
+    // Wait one frame for the preset panel to paint before measuring
+    const frame = requestAnimationFrame(updateCalendarPos)
+    const observer = new ResizeObserver(updateCalendarPos)
+    if (presetPanelRef.current) observer.observe(presetPanelRef.current)
+    window.addEventListener("resize", updateCalendarPos)
+    window.addEventListener("scroll", updateCalendarPos, true)
+    return () => {
+      cancelAnimationFrame(frame)
+      observer.disconnect()
+      window.removeEventListener("resize", updateCalendarPos)
+      window.removeEventListener("scroll", updateCalendarPos, true)
+    }
+  }, [showCalendar, updateCalendarPos])
+
   // Close everything
   function closeAll() {
     setOpen(false)
   }
 
-  // Esc key
+  // Esc key — USE setOpen(false) DIRECTLY (not closeAll) to avoid stale closure
   useEffect(() => {
     if (!open) return
     function handleKeyDown(e: KeyboardEvent) {
@@ -119,7 +198,8 @@ export function DateRangeSelect({
     return () => document.removeEventListener("keydown", handleKeyDown)
   }, [open])
 
-  // Click outside
+  // Click outside (all three elements: trigger, preset panel, calendar panel)
+  // USE setOpen(false) DIRECTLY to avoid stale closure; add instanceof Node guard
   useEffect(() => {
     if (!open) return
     function handlePointerDown(e: PointerEvent) {
@@ -127,7 +207,8 @@ export function DateRangeSelect({
       if (!(target instanceof Node)) { setOpen(false); return }
       if (
         triggerRef.current?.contains(target) ||
-        presetPanelRef.current?.contains(target)
+        presetPanelRef.current?.contains(target) ||
+        calendarPanelRef.current?.contains(target)
       )
         return
       setOpen(false)
@@ -141,10 +222,7 @@ export function DateRangeSelect({
     const p = presets.find((x) => x.id === id)
     if (!p) return
     setActivePreset(id)
-    if (id === "custom") {
-      // Show calendar panel — do not close
-      return
-    }
+    if (id === "custom") return // show calendar, stay open
     if (p.getRange) commitRange(p.getRange())
     closeAll()
   }
@@ -175,13 +253,7 @@ export function DateRangeSelect({
       <button
         ref={triggerRef}
         type="button"
-        onClick={() => {
-          if (open) {
-            closeAll()
-          } else {
-            setOpen(true)
-          }
-        }}
+        onClick={() => (open ? closeAll() : setOpen(true))}
         disabled={disabled}
         data-name={name}
         aria-expanded={open}
@@ -240,6 +312,31 @@ export function DateRangeSelect({
                 {p.label}
               </button>
             ))}
+          </div>,
+          document.body,
+        )}
+
+      {/* Calendar panel — only when Custom range is committed */}
+      {showCalendar &&
+        calendarPos &&
+        createPortal(
+          <div
+            ref={calendarPanelRef}
+            style={{
+              position: "fixed",
+              bottom: calendarPos.bottom,
+              right: calendarPos.right,
+              zIndex: 50,
+            }}
+            className="overflow-hidden rounded-xl border border-border bg-card shadow-md"
+          >
+            <CalendarPanel
+              effectiveRange={effectiveRange}
+              commitRange={commitRange}
+              activePreset={activePreset}
+              setActivePreset={setActivePreset}
+              disabled={disabled}
+            />
           </div>,
           document.body,
         )}
