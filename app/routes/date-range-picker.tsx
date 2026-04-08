@@ -103,7 +103,10 @@ export default function DateRangePickerPage() {
       </div>
 
       <div className="w-full max-w-2xl space-y-2">
-        <h2 className="text-base font-semibold">DateRangeSelect (WIP)</h2>
+        <h2 className="text-base font-semibold">DateRangeSelect</h2>
+        <p className="text-sm text-muted-foreground">
+          Compact select-style trigger. Custom range opens a calendar panel.
+        </p>
         <DateRangeSelect />
       </div>
     </div>
