@@ -1,3 +1,11 @@
+import {
+  format,
+  startOfDay,
+  subDays,
+  startOfYesterday,
+  endOfYesterday,
+} from "date-fns"
+
 export type PresetId =
   | "today"
   | "yesterday"
@@ -17,17 +25,9 @@ export interface Preset {
   getRange?: () => { start: Date; end: Date }
 }
 
-function startOfDay(d: Date): Date {
-  return new Date(d.getFullYear(), d.getMonth(), d.getDate())
-}
-
 /** Formats a date as "Apr 07, 2026". */
 export function formatDate(d: Date): string {
-  return d.toLocaleDateString("en-US", {
-    month: "short",
-    day: "2-digit",
-    year: "numeric",
-  })
+  return format(d, "MMM dd, yyyy")
 }
 
 export const PRESETS: Preset[] = [
@@ -42,38 +42,34 @@ export const PRESETS: Preset[] = [
   {
     id: "yesterday",
     label: "Yesterday",
-    getRange: () => {
-      const t = startOfDay(new Date())
-      const y = new Date(t.getFullYear(), t.getMonth(), t.getDate() - 1)
-      return { start: y, end: y }
-    },
+    getRange: () => ({
+      start: startOfYesterday(),
+      end: endOfYesterday(),
+    }),
   },
   {
     id: "last7",
     label: "Last 7 days",
-    getRange: () => {
-      const end = startOfDay(new Date())
-      const start = new Date(end.getFullYear(), end.getMonth(), end.getDate() - 6)
-      return { start, end }
-    },
+    getRange: () => ({
+      start: startOfDay(subDays(new Date(), 6)),
+      end: startOfDay(new Date()),
+    }),
   },
   {
     id: "last30",
     label: "Last 30 days",
-    getRange: () => {
-      const end = startOfDay(new Date())
-      const start = new Date(end.getFullYear(), end.getMonth(), end.getDate() - 29)
-      return { start, end }
-    },
+    getRange: () => ({
+      start: startOfDay(subDays(new Date(), 29)),
+      end: startOfDay(new Date()),
+    }),
   },
   {
     id: "last90",
     label: "Last 90 days",
-    getRange: () => {
-      const end = startOfDay(new Date())
-      const start = new Date(end.getFullYear(), end.getMonth(), end.getDate() - 89)
-      return { start, end }
-    },
+    getRange: () => ({
+      start: startOfDay(subDays(new Date(), 89)),
+      end: startOfDay(new Date()),
+    }),
   },
   {
     id: "custom",

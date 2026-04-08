@@ -1,11 +1,16 @@
 // app/components/date-range-select/DateRangeSelect.tsx
-import { useCallback, useEffect, useRef, useState } from "react"
-import { createPortal } from "react-dom"
+import { useRef, useState } from "react"
 import { CalendarIcon } from "lucide-react"
+import { Popover } from "@base-ui/react/popover"
 import { Select } from "@base-ui/react/select"
 
 import { cn } from "~/lib/utils"
-import { PRESETS, formatDate, type DateRange, type Preset } from "~/lib/dateUtils"
+import {
+  PRESETS,
+  formatDate,
+  type DateRange,
+  type Preset,
+} from "~/lib/dateUtils"
 import { DateRangePickerContext } from "~/components/date-range-picker/DateRangePickerContext"
 import { DateRangePickerCalendar } from "~/components/date-range-picker/DateRangePickerCalendar"
 
@@ -29,7 +34,10 @@ export interface DateRangeSelectProps {
 
 // ── Trigger label ──────────────────────────────────────────────────────────
 
-function getTriggerLabel(effectiveRange: DateRange, placeholder: string): string {
+function getTriggerLabel(
+  effectiveRange: DateRange,
+  placeholder: string
+): string {
   const { start, end } = effectiveRange
   if (start && end) return `${formatDate(start)} → ${formatDate(end)}`
   if (start) return `${formatDate(start)} → ...`
@@ -55,7 +63,7 @@ function CalendarPanel({
 }) {
   const [viewMode, setViewMode] = useState<"days" | "months">("days")
   const [openToDate, setOpenToDate] = useState<Date>(
-    effectiveRange.start ?? new Date(),
+    effectiveRange.start ?? new Date()
   )
 
   return (
@@ -92,7 +100,7 @@ export function DateRangeSelect({
 }: DateRangeSelectProps) {
   // Controlled / uncontrolled value
   const [internalRange, setInternalRange] = useState<DateRange>(
-    defaultValue ?? { start: null, end: null },
+    defaultValue ?? { start: null, end: null }
   )
   const effectiveRange = value ?? internalRange
 
@@ -103,15 +111,17 @@ export function DateRangeSelect({
 
   // UI state
   const [open, setOpen] = useState(false)
-  const [activePreset, setActivePreset] = useState<string>("custom")
+  const [activePreset, setActivePreset] = useState<string>("")
+  // Explicit flag — not derived from activePreset, so it resets on every close.
+  const [calendarOpen, setCalendarOpen] = useState(false)
 
   // When "Custom range" is selected, we intercept the Select's close in onOpenChange.
   // onValueChange fires before onOpenChange, so we use a ref to pass that signal.
   const justSelectedCustomRef = useRef(false)
 
   // Refs for calendar panel positioning and click-outside detection
-  const presetPopupRef = useRef<HTMLDivElement>(null)  // on Select.Popup
-  const customItemRef = useRef<HTMLDivElement>(null)   // on the "Custom range" Select.Item
+  const presetPopupRef = useRef<HTMLDivElement>(null) // on Select.Popup
+  const customItemRef = useRef<HTMLDivElement>(null) // on the "Custom range" Select.Item
   const calendarPanelRef = useRef<HTMLDivElement>(null)
 
   // ── Preset selection ───────────────────────────────────────────────────
@@ -121,15 +131,20 @@ export function DateRangeSelect({
     setActivePreset(newValue)
     if (newValue === "custom") {
       justSelectedCustomRef.current = true
+      setCalendarOpen(true)
       return // calendar will appear; don't commit a range
     }
+    setCalendarOpen(false)
     const p = presets.find((x) => x.id === newValue)
     if (p?.getRange) commitRange(p.getRange())
   }
 
   function handleOpenChange(
     isOpen: boolean,
-    eventDetails: { reason: string; event: Event },
+    eventDetails: {
+      reason: string
+      event: Event & { relatedTarget?: EventTarget | null }
+    }
   ) {
     // If "Custom range" was just selected, keep the Select open so the
     // calendar panel appears alongside the preset list.
@@ -137,53 +152,23 @@ export function DateRangeSelect({
       justSelectedCustomRef.current = false
       return
     }
-    // If the click that triggered an outside-press was inside our calendar
-    // panel, don't close the Select.
-    if (!isOpen && eventDetails.reason === "outside-press") {
-      const target = eventDetails.event.target
-      if (target instanceof Node && calendarPanelRef.current?.contains(target)) {
-        return
-      }
+    // Don't close if the triggering event (pointer or focus) involves the
+    // calendar panel. Handles both "outside-press" and "focus-out" reasons.
+    if (!isOpen && calendarPanelRef.current) {
+      const { event } = eventDetails
+      const primary =
+        event.target instanceof Node &&
+        calendarPanelRef.current.contains(event.target)
+      const related =
+        event.relatedTarget instanceof Node &&
+        calendarPanelRef.current.contains(event.relatedTarget)
+      if (primary || related) return
     }
+    if (!isOpen) setCalendarOpen(false)
     setOpen(isOpen)
   }
 
-  // ── Calendar panel positioning ─────────────────────────────────────────
-
-  const [calendarPos, setCalendarPos] = useState<{ bottom: number; right: number } | null>(null)
-  const showCalendar = open && activePreset === "custom"
-
-  const updateCalendarPos = useCallback(() => {
-    if (!presetPopupRef.current) return
-    // Anchor bottom to the "Custom range" item for precise alignment.
-    const anchor = customItemRef.current ?? presetPopupRef.current
-    const ar = anchor.getBoundingClientRect()
-    const pr = presetPopupRef.current.getBoundingClientRect()
-    setCalendarPos({
-      bottom: window.innerHeight - ar.bottom,
-      right: window.innerWidth - pr.left + 8,
-    })
-  }, [])
-
-  useEffect(() => {
-    if (!showCalendar) {
-      setCalendarPos(null)
-      return
-    }
-    // Defer one frame to ensure the portal has committed to the DOM and
-    // presetPopupRef.current is attached before measuring.
-    const frame = requestAnimationFrame(updateCalendarPos)
-    const observer = new ResizeObserver(updateCalendarPos)
-    if (presetPopupRef.current) observer.observe(presetPopupRef.current)
-    window.addEventListener("resize", updateCalendarPos)
-    window.addEventListener("scroll", updateCalendarPos, true)
-    return () => {
-      cancelAnimationFrame(frame)
-      observer.disconnect()
-      window.removeEventListener("resize", updateCalendarPos)
-      window.removeEventListener("scroll", updateCalendarPos, true)
-    }
-  }, [showCalendar, updateCalendarPos])
+  const showCalendar = open && calendarOpen
 
   const label = getTriggerLabel(effectiveRange, placeholder)
 
@@ -203,8 +188,8 @@ export function DateRangeSelect({
           className={cn(
             "inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium shadow-sm transition-colors",
             "hover:bg-accent hover:text-accent-foreground",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-            disabled && "pointer-events-none opacity-60",
+            "focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
+            disabled && "pointer-events-none opacity-60"
           )}
         >
           <CalendarIcon className="size-4 shrink-0 text-muted-foreground" />
@@ -213,7 +198,12 @@ export function DateRangeSelect({
 
         {/* Preset list panel */}
         <Select.Portal>
-          <Select.Positioner side="bottom" align="end" sideOffset={4} alignItemWithTrigger={false}>
+          <Select.Positioner
+            side="bottom"
+            align="end"
+            sideOffset={4}
+            alignItemWithTrigger={false}
+          >
             <Select.Popup
               ref={presetPopupRef}
               className="min-w-[10rem] overflow-hidden rounded-xl border border-border bg-card py-1 shadow-md"
@@ -226,7 +216,7 @@ export function DateRangeSelect({
                   className={cn(
                     "flex w-full cursor-pointer items-center px-4 py-2.5 text-sm transition-colors outline-none",
                     "data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground",
-                    "data-[selected]:bg-accent/60 data-[selected]:font-medium data-[selected]:text-accent-foreground",
+                    "data-[selected]:bg-accent/60 data-[selected]:font-medium data-[selected]:text-accent-foreground"
                   )}
                 >
                   <Select.ItemText>{p.label}</Select.ItemText>
@@ -237,32 +227,41 @@ export function DateRangeSelect({
         </Select.Portal>
       </Select.Root>
 
-      {/* Calendar panel — only when Custom range is active */}
-      {showCalendar &&
-        calendarPos &&
-        createPortal(
-          <div
-            ref={calendarPanelRef}
-            role="dialog"
-            aria-label="Select custom date range"
-            style={{
-              position: "fixed",
-              bottom: calendarPos.bottom,
-              right: calendarPos.right,
-              zIndex: 50,
-            }}
-            className="overflow-hidden rounded-xl border border-border bg-card shadow-md"
-          >
-            <CalendarPanel
-              effectiveRange={effectiveRange}
-              commitRange={commitRange}
-              activePreset={activePreset}
-              setActivePreset={setActivePreset}
-              disabled={disabled}
-            />
-          </div>,
-          document.body,
-        )}
+      {/* Calendar panel — only mounted when Custom range is active */}
+      {showCalendar && (
+        <Popover.Root
+          open
+          onOpenChange={() => {
+            // Intentionally empty — Select's handleOpenChange owns all dismiss logic via calendarPanelRef.
+          }}
+          modal={false}
+        >
+          <Popover.Portal>
+            <Popover.Positioner
+              anchor={presetPopupRef}
+              side="left"
+              align="end"
+              sideOffset={8}
+              positionMethod="fixed"
+            >
+              <div
+                ref={calendarPanelRef}
+                role="dialog"
+                aria-label="Select custom date range"
+                className="overflow-hidden rounded-xl border border-border bg-card shadow-md"
+              >
+                <CalendarPanel
+                  effectiveRange={effectiveRange}
+                  commitRange={commitRange}
+                  activePreset={activePreset}
+                  setActivePreset={setActivePreset}
+                  disabled={disabled}
+                />
+              </div>
+            </Popover.Positioner>
+          </Popover.Portal>
+        </Popover.Root>
+      )}
     </>
   )
 }
