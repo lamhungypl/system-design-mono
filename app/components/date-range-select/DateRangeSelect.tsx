@@ -164,12 +164,18 @@ export function DateRangeSelect({
 
   const updateCalendarPos = useCallback(() => {
     if (!presetPanelRef.current) return
-    const r = presetPanelRef.current.getBoundingClientRect()
+    // Anchor to the "Custom range" item if available, otherwise the panel bottom.
+    const customIndex = presets.findIndex((p) => p.id === "custom")
+    const anchor =
+      (customIndex >= 0 ? presetItemRefs.current[customIndex] : null) ??
+      presetPanelRef.current
+    const ar = anchor.getBoundingClientRect()
+    const pr = presetPanelRef.current.getBoundingClientRect()
     setCalendarPos({
-      bottom: window.innerHeight - r.bottom,
-      right: window.innerWidth - r.left + 8,
+      bottom: window.innerHeight - ar.bottom,
+      right: window.innerWidth - pr.left + 8,
     })
-  }, [])
+  }, [presets]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!showCalendar) {
