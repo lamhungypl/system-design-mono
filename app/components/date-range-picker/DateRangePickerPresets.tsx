@@ -1,5 +1,5 @@
 // app/components/date-range-picker/DateRangePickerPresets.tsx
-import { RadioGroup, Radio } from "@base-ui/react"
+import { useEffect, useRef, useState } from "react"
 import { CalendarIcon } from "lucide-react"
 
 import { cn } from "~/lib/utils"
@@ -34,6 +34,38 @@ export function DateRangePickerPresets(props: PresetsSlotProps) {
         ? `${formatDate(startDate)} → ...`
         : "Select a date range"
 
+  // Roving tabindex — tracks which item owns tabIndex=0 (focus position).
+  // Arrow keys move focus only; Space/Enter commits the selection.
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([])
+  const [focusedIndex, setFocusedIndex] = useState(() => {
+    const i = presets.findIndex((p) => p.id === activePreset)
+    return i >= 0 ? i : 0
+  })
+
+  // Keep focus position in sync when activePreset changes externally
+  // (e.g. calendar date selection resets to "custom").
+  useEffect(() => {
+    const i = presets.findIndex((p) => p.id === activePreset)
+    if (i >= 0) setFocusedIndex(i)
+  }, [activePreset]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  function handleKeyDown(e: React.KeyboardEvent, index: number) {
+    if (e.key === "ArrowDown") {
+      e.preventDefault()
+      const next = (index + 1) % presets.length
+      setFocusedIndex(next)
+      itemRefs.current[next]?.focus()
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault()
+      const prev = (index - 1 + presets.length) % presets.length
+      setFocusedIndex(prev)
+      itemRefs.current[prev]?.focus()
+    } else if (e.key === " " || e.key === "Enter") {
+      e.preventDefault()
+      handlePresetChange(presets[index].id)
+    }
+  }
+
   function handlePresetChange(id: string) {
     const p = presets.find((x) => x.id === id)
     if (!p) return
@@ -67,18 +99,26 @@ export function DateRangePickerPresets(props: PresetsSlotProps) {
         <span className="text-xs text-muted-foreground">{rangeLabel}</span>
       </div>
 
-      {/* Preset list */}
-      <RadioGroup
-        className="flex flex-col py-1"
-        value={activePreset}
-        onValueChange={handlePresetChange}
+      {/* Preset list — listbox pattern: arrows move focus, Space/Enter selects */}
+      <div
+        role="listbox"
         aria-label="Date range presets"
-        disabled={disabled}
+        aria-orientation="vertical"
+        className="flex flex-col py-1"
       >
-        {presets.map((p) => (
-          <Radio.Root
+        {presets.map((p, i) => (
+          <button
             key={p.id}
-            value={p.id}
+            role="option"
+            ref={(el) => { itemRefs.current[i] = el }}
+            tabIndex={i === focusedIndex ? 0 : -1}
+            aria-selected={activePreset === p.id}
+            onClick={() => {
+              setFocusedIndex(i)
+              handlePresetChange(p.id)
+            }}
+            onKeyDown={(e) => handleKeyDown(e, i)}
+            disabled={disabled}
             className={cn(
               "flex w-full cursor-pointer items-center px-4 py-2.5 text-sm transition-colors",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
@@ -90,9 +130,9 @@ export function DateRangePickerPresets(props: PresetsSlotProps) {
             )}
           >
             {p.label}
-          </Radio.Root>
+          </button>
         ))}
-      </RadioGroup>
+      </div>
     </div>
   )
 }
