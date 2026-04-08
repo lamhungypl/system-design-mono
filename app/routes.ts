@@ -2,5 +2,8 @@ import { type RouteConfig, index, route } from "@react-router/dev/routes"
 
 export default [
   index("routes/home.tsx"),
-  route("/date-range-picker", "routes/date-range-picker.tsx"),
+  route("form", "routes/form-demo.tsx"),
+  route("dialog", "routes/dialog-demo.tsx"),
+  route("collapsible", "routes/collapsible-demo.tsx"),
+  route("date-range", "routes/date-range-demo.tsx"),
 ] satisfies RouteConfig
