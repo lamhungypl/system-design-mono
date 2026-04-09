@@ -8,4 +8,5 @@ export default [
   route("date-range", "routes/date-range-demo.tsx"),
   route("date-picker", "routes/date-picker-demo.tsx"),
   route("range-picker", "routes/range-picker-demo.tsx"),
+  route("segmented-control", "routes/segmented-control-demo.tsx"),
 ] satisfies RouteConfig

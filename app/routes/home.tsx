@@ -14,6 +14,7 @@ const nav = [
       { label: "Date Range", href: "/date-range", icon: <DateIcon /> },
       { label: "Date Picker", href: "/date-picker", icon: <DateIcon /> },
       { label: "Range Picker", href: "/range-picker", icon: <DateIcon /> },
+      { label: "Segmented Control", href: "/segmented-control", icon: <ToggleIcon /> },
     ],
   },
   {
@@ -116,6 +117,15 @@ function FormIcon() {
     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="size-4">
       <rect x="2" y="2" width="12" height="12" rx="1.5" />
       <path d="M5 5.5h6M5 8h6M5 10.5h3" />
+    </svg>
+  )
+}
+
+function ToggleIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="size-4">
+      <rect x="1.5" y="4" width="13" height="8" rx="4" />
+      <circle cx="10.5" cy="8" r="2.5" />
     </svg>
   )
 }
