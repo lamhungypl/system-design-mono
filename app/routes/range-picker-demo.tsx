@@ -135,21 +135,19 @@ export default function RangePickerDemo() {
       <header>
         <h1 className="text-xl font-semibold">RangePicker</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          A date-range picker with an optional presets sidebar. Calendar is
-          always visible &mdash; no &ldquo;Custom range&rdquo; concept.
+          A compact date-range picker with popover calendar and optional presets
+          sidebar.
         </p>
       </header>
 
-      {/* 1 — Basic (no presets) */}
       <Section
         title="Basic"
-        description="Calendar-only &mdash; no presets prop."
+        description="Calendar-only — no presets prop."
       >
         <RangePicker value={basic} onChange={setBasic} />
         <RangeCard range={basic} />
       </Section>
 
-      {/* 2 — With presets */}
       <Section
         title="With presets"
         description="Pass a presets array to show a sidebar alongside the calendar."
@@ -162,10 +160,9 @@ export default function RangePickerDemo() {
         <RangeCard range={withPresets} />
       </Section>
 
-      {/* 3 — Custom presets */}
       <Section
-        title="Custom presets"
-        description="Use fiscal quarter presets instead of rolling windows."
+        title="Fiscal quarter presets"
+        description="Domain-specific presets."
       >
         <RangePicker
           presets={FISCAL_PRESETS}
@@ -176,10 +173,9 @@ export default function RangePickerDemo() {
         <RangeCard range={fiscal} />
       </Section>
 
-      {/* 4 — Uncontrolled */}
       <Section
         title="Uncontrolled"
-        description="No value prop. Use name for form association."
+        description="No value prop — internal state only."
       >
         <RangePicker
           name="report_range"
@@ -188,7 +184,6 @@ export default function RangePickerDemo() {
         />
       </Section>
 
-      {/* 5 — Disabled */}
       <Section
         title="Disabled"
         description="Pass disabled to lock the picker."
