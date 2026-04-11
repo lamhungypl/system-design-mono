@@ -89,8 +89,8 @@ export function DatePicker({
         </Popover.Trigger>
 
         <Popover.Portal>
-          <Popover.Positioner side="bottom" align="start" sideOffset={4}>
-            <Popover.Popup className="overflow-hidden rounded-xl border border-border bg-card shadow-md outline-none">
+          <Popover.Positioner side="bottom" align="start" sideOffset={4} style={{ maxWidth: "var(--available-width)" }}>
+            <Popover.Popup className="overflow-auto rounded-xl border border-border bg-card shadow-md outline-none">
               <div className="flex">
                 {presets && presets.length > 0 && (
                   <DatePickerPresets presets={presets} />
