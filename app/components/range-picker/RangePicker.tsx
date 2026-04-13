@@ -12,6 +12,8 @@ export interface RangePickerProps {
   value?: DateRange
   defaultValue?: DateRange
   onChange?: (range: DateRange) => void
+  id?: string
+  "aria-labelledby"?: string
   name?: string
   disabled?: boolean
   minDate?: Date
@@ -31,6 +33,8 @@ export function RangePicker({
   value,
   defaultValue,
   onChange,
+  id,
+  "aria-labelledby": ariaLabelledBy,
   name,
   disabled = false,
   minDate,
@@ -98,6 +102,8 @@ export function RangePicker({
 
       <Popover.Root open={open} onOpenChange={setOpen} modal={false}>
         <Popover.Trigger
+          id={id}
+          aria-labelledby={ariaLabelledBy}
           disabled={disabled}
           className={cn(
             "inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium shadow-sm transition-colors",

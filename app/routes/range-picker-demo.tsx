@@ -129,6 +129,7 @@ export default function RangePickerDemo() {
   const [basic, setBasic] = useState<DateRange>({ start: null, end: null })
   const [withPresets, setWithPresets] = useState<DateRange>({ start: null, end: null })
   const [fiscal, setFiscal] = useState<DateRange>({ start: null, end: null })
+  const [labeled, setLabeled] = useState<DateRange>({ start: null, end: null })
 
   return (
     <div className="p-8 max-w-2xl space-y-10">
@@ -139,6 +140,25 @@ export default function RangePickerDemo() {
           sidebar.
         </p>
       </header>
+
+      <Section
+        title="With label + live announcement"
+        description="A visible label associated via htmlFor, with an aria-live region that announces the selected range."
+      >
+        <div className="flex flex-col gap-2">
+          <span id="filter-range-tz-label" className="text-sm font-medium">
+            Filter Range timezone
+          </span>
+          <RangePicker
+            id="filter-range-tz"
+            aria-labelledby="filter-range-tz-label filter-range-tz"
+            presets={PRESETS}
+            value={labeled}
+            onChange={setLabeled}
+          />
+        </div>
+        <RangeCard range={labeled} />
+      </Section>
 
       <Section
         title="Basic"
