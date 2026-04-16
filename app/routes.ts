@@ -5,24 +5,22 @@ export default [
 
   route("components", "routes/components-layout.tsx", [
     index("routes/components.tsx"),
-    route("dashboard", "routes/components.tsx"),
+    route("dashboard", "routes/components-dashboard.tsx"),
 
     // General
-    route("button", "routes/form-demo.tsx"),
-    route("segmented-control", "routes/segmented-control-demo.tsx"),
-    route("tooltip", "routes/segmented-control-demo.tsx"),
+    route("button", "routes/demo-button.tsx"),
+    route("segmented-control", "routes/demo-segmented-control.tsx"),
 
     // Data Entry
-    route("field", "routes/form-demo.tsx"),
-    route("label", "routes/form-demo.tsx"),
-    route("date-picker", "routes/date-picker-demo.tsx"),
-    route("range-picker", "routes/range-picker-demo.tsx"),
-    route("date-range-picker", "routes/date-range-picker.tsx"),
+    route("form", "routes/demo-form.tsx"),
+    route("date-picker", "routes/demo-date-picker.tsx"),
+    route("range-picker", "routes/demo-range-picker.tsx"),
+    route("date-range-picker", "routes/demo-date-range-picker.tsx"),
 
     // Data Display
-    route("collapsible", "routes/collapsible-demo.tsx"),
+    route("collapsible", "routes/demo-collapsible.tsx"),
 
     // Feedback
-    route("dialog", "routes/dialog-demo.tsx"),
+    route("dialog", "routes/demo-dialog.tsx"),
   ]),
 ] satisfies RouteConfig
