@@ -65,7 +65,7 @@ function SidebarLayout({
 
         {/* Nav */}
         <nav className="flex flex-1 flex-col gap-1 overflow-y-auto overflow-x-hidden p-2">
-          {sections.map((section, i) => (
+          {sections.filter((s) => s.items.length > 0).map((section, i) => (
             <SidebarSectionGroup key={i} section={section} collapsed={collapsed} />
           ))}
         </nav>

@@ -1,9 +1,10 @@
 "use client"
 
+import { Outlet } from "react-router"
 import { SidebarLayout } from "~/components/layout/sidebar-layout"
 import { nav } from "~/lib/nav"
 
-export default function Home() {
+export default function ComponentsLayout() {
   return (
     <SidebarLayout
       sections={nav}
@@ -13,12 +14,7 @@ export default function Home() {
         </span>
       }
     >
-      <div className="p-8">
-        <h1 className="text-xl font-semibold">Dashboard</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Welcome to the system design monorepo.
-        </p>
-      </div>
+      <Outlet />
     </SidebarLayout>
   )
 }
