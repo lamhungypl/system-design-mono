@@ -62,7 +62,7 @@ export function DatePickerCalendar() {
               onTitleClick={() => setViewMode("months")}
             />
           )}
-          calendarClassName="!border-0 !shadow-none !bg-transparent w-full"
+          calendarClassName="!border-0 !shadow-none !bg-transparent"
         />
       )}
     </div>

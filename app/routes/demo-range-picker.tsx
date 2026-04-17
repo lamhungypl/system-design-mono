@@ -132,7 +132,7 @@ export default function RangePickerDemo() {
   const [labeled, setLabeled] = useState<DateRange>({ start: null, end: null })
 
   return (
-    <div className="p-8 max-w-2xl space-y-10">
+    <div className="p-8 space-y-10">
       <header>
         <h1 className="text-xl font-semibold">RangePicker</h1>
         <p className="mt-1 text-sm text-muted-foreground">

@@ -1,65 +1,25 @@
 "use client"
 
-import { useState } from "react"
-import { startOfDay, subDays } from "date-fns"
-import { DatePicker } from "~/components/date-picker/DatePicker"
-import { type DatePreset } from "~/lib/dateUtils"
+import { DemoBlock } from "~/components/ui/demo-block"
 
-const PRESETS: DatePreset[] = [
-  { label: "Today", value: () => startOfDay(new Date()) },
-  { label: "Yesterday", value: () => startOfDay(subDays(new Date(), 1)) },
-  { label: "A week ago", value: () => startOfDay(subDays(new Date(), 7)) },
-  { label: "A month ago", value: () => startOfDay(subDays(new Date(), 30)) },
-  { label: "Custom" },
-]
+import BasicDemo from "~/components/date-picker/demos/basic"
+import basicCode from "~/components/date-picker/demos/basic.tsx?raw"
 
-function DateCard({ date }: { date: Date | null }) {
-  if (!date) {
-    return (
-      <p className="text-sm text-muted-foreground italic">No date selected.</p>
-    )
-  }
-  return (
-    <div className="max-w-sm rounded-lg border border-border bg-card p-4 text-sm">
-      <span className="text-muted-foreground">Selected: </span>
-      <span className="font-medium">
-        {date.toLocaleDateString("en-US", {
-          weekday: "long",
-          month: "long",
-          day: "numeric",
-          year: "numeric",
-        })}
-      </span>
-    </div>
-  )
-}
+import WithPresetsDemo from "~/components/date-picker/demos/with-presets"
+import withPresetsCode from "~/components/date-picker/demos/with-presets.tsx?raw"
 
-function Section({
-  title,
-  description,
-  children,
-}: {
-  title: string
-  description: string
-  children: React.ReactNode
-}) {
-  return (
-    <section className="space-y-4">
-      <div>
-        <h2 className="text-base font-semibold">{title}</h2>
-        <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>
-      </div>
-      {children}
-    </section>
-  )
-}
+import UncontrolledDemo from "~/components/date-picker/demos/uncontrolled"
+import uncontrolledCode from "~/components/date-picker/demos/uncontrolled.tsx?raw"
+
+import MinMaxDemo from "~/components/date-picker/demos/min-max"
+import minMaxCode from "~/components/date-picker/demos/min-max.tsx?raw"
+
+import DisabledDemo from "~/components/date-picker/demos/disabled"
+import disabledCode from "~/components/date-picker/demos/disabled.tsx?raw"
 
 export default function DatePickerDemo() {
-  const [basic, setBasic] = useState<Date | null>(null)
-  const [withPresets, setWithPresets] = useState<Date | null>(null)
-
   return (
-    <div className="p-8 max-w-2xl space-y-10">
+    <div className="p-8 space-y-6">
       <header>
         <h1 className="text-xl font-semibold">DatePicker</h1>
         <p className="mt-1 text-sm text-muted-foreground">
@@ -67,56 +27,45 @@ export default function DatePickerDemo() {
         </p>
       </header>
 
-      {/* 1 — Basic (no presets) */}
-      <Section
+      <DemoBlock
         title="Basic"
         description="Calendar-only — no presets prop."
+        code={basicCode}
       >
-        <DatePicker value={basic} onChange={setBasic} />
-        <DateCard date={basic} />
-      </Section>
+        <BasicDemo />
+      </DemoBlock>
 
-      {/* 2 — With presets */}
-      <Section
+      <DemoBlock
         title="With presets"
         description="Pass a presets array to show a sidebar alongside the calendar."
+        code={withPresetsCode}
       >
-        <DatePicker
-          presets={PRESETS}
-          value={withPresets}
-          onChange={setWithPresets}
-        />
-        <DateCard date={withPresets} />
-      </Section>
+        <WithPresetsDemo />
+      </DemoBlock>
 
-      {/* 3 — Uncontrolled */}
-      <Section
+      <DemoBlock
         title="Uncontrolled"
         description="No value prop — internal state only. Use name for form association."
+        code={uncontrolledCode}
       >
-        <DatePicker
-          name="due_date"
-          placeholder="Pick a due date"
-          presets={PRESETS}
-        />
-      </Section>
+        <UncontrolledDemo />
+      </DemoBlock>
 
-      {/* 4 — Min / Max */}
-      <Section
+      <DemoBlock
         title="Min / Max date"
         description="Restrict selectable dates with minDate and maxDate."
+        code={minMaxCode}
       >
-        <DatePicker
-          minDate={subDays(new Date(), 30)}
-          maxDate={new Date()}
-          placeholder="Last 30 days only"
-        />
-      </Section>
+        <MinMaxDemo />
+      </DemoBlock>
 
-      {/* 5 — Disabled */}
-      <Section title="Disabled" description="Pass disabled to lock the picker.">
-        <DatePicker disabled defaultValue={new Date()} />
-      </Section>
+      <DemoBlock
+        title="Disabled"
+        description="Pass disabled to lock the picker."
+        code={disabledCode}
+      >
+        <DisabledDemo />
+      </DemoBlock>
     </div>
   )
 }
