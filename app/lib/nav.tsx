@@ -41,6 +41,7 @@ export const nav = [
       { label: "Skeleton", href: "/components/skeleton", icon: <SkeletonIcon /> },
       { label: "Progress", href: "/components/progress", icon: <ProgressIcon /> },
       { label: "Collapsible", href: "/components/collapsible", icon: <CollapsibleIcon /> },
+      { label: "Data Table", href: "/components/data-table", icon: <DataTableIcon /> },
     ],
   },
   {
@@ -61,6 +62,7 @@ export const nav = [
       { label: "Drawer", href: "/components/drawer", icon: <DrawerIcon /> },
       { label: "Popover", href: "/components/popover", icon: <PopoverIcon /> },
       { label: "Tooltip", href: "/components/tooltip", icon: <TooltipIcon /> },
+      { label: "Affix", href: "/components/affix", icon: <AffixIcon /> },
     ],
   },
 ]
@@ -218,6 +220,16 @@ function ProgressIcon() {
     </svg>
   )
 }
+function DataTableIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="size-4">
+      <rect x="1.5" y="2.5" width="13" height="11" rx="1.5" />
+      <path d="M1.5 6.5h13" />
+      <path d="M1.5 10h13" />
+      <path d="M6 6.5v7" />
+    </svg>
+  )
+}
 function CollapsibleIcon() {
   return (
     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="size-4">
@@ -299,6 +311,13 @@ function PopoverIcon() {
       <rect x="2" y="1.5" width="12" height="8" rx="1.5" />
       <path d="M5 10.5l3 3.5 3-3.5" />
       <path d="M5 5h6M5 7h4" />
+    </svg>
+  )
+}
+function AffixIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="size-4">
+      <path d="M8 2v12M4 6l4-4 4 4M3 14h10" />
     </svg>
   )
 }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { codeToHtml } from "shiki"
+import { Dialog, DialogHeader, DialogTitle } from "~/components/ui/dialog"
 import { cn } from "~/lib/utils"
 
 interface DemoBlockProps {
@@ -61,6 +62,7 @@ export function DemoSection({
 
 export function DemoBlock({ title, description, code, children }: DemoBlockProps) {
   const [open, setOpen] = useState(false)
+  const [theater, setTheater] = useState(false)
   const [copied, setCopied] = useState(false)
   const [html, setHtml] = useState("")
 
@@ -102,6 +104,14 @@ export function DemoBlock({ title, description, code, children }: DemoBlockProps
           {open ? "Hide code" : "Show code"}
         </button>
         <button
+          onClick={() => setTheater(true)}
+          className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          aria-label="Open code in theater mode"
+        >
+          <TheaterIcon />
+          Theater
+        </button>
+        <button
           onClick={copy}
           className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
           aria-label="Copy code"
@@ -125,6 +135,37 @@ export function DemoBlock({ title, description, code, children }: DemoBlockProps
           />
         </div>
       </div>
+
+      {/* theater-mode dialog */}
+      <Dialog
+        open={theater}
+        onClose={() => setTheater(false)}
+        className="m-4 h-[calc(100vh-2rem)] max-h-none w-[calc(100vw-2rem)] max-w-none p-0 md:m-8 md:h-[calc(100vh-4rem)] md:w-[calc(100vw-4rem)]"
+      >
+        <div className="flex h-full flex-col">
+          <div className="flex items-center justify-between border-b border-border bg-muted/30 px-5 py-3">
+            <DialogHeader onClose={() => setTheater(false)}>
+              <DialogTitle className="text-sm">{title}</DialogTitle>
+              {description && (
+                <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
+              )}
+            </DialogHeader>
+          </div>
+          <div
+            className="flex-1 overflow-auto bg-muted/40 text-sm [&_pre]:!m-0 [&_pre]:p-6 [&_pre]:leading-relaxed [&_pre]:!bg-transparent"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+          <div className="flex items-center justify-end gap-2 border-t border-border px-5 py-2">
+            <button
+              onClick={copy}
+              className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            >
+              {copied ? <CheckIcon /> : <CopyIcon />}
+              {copied ? "Copied!" : "Copy"}
+            </button>
+          </div>
+        </div>
+      </Dialog>
     </div>
   )
 }
@@ -174,6 +215,22 @@ function CheckIcon() {
       className="size-3.5"
     >
       <path d="M2.5 8.5 6 12l7.5-8" />
+    </svg>
+  )
+}
+
+function TheaterIcon() {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="size-3.5"
+    >
+      <path d="M2 3h4M10 3h4M2 13h4M10 13h4M2 3v4M2 9v4M14 3v4M14 9v4" />
     </svg>
   )
 }

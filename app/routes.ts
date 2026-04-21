@@ -36,6 +36,7 @@ export default [
     route("skeleton", "routes/demo-skeleton.tsx"),
     route("progress", "routes/demo-progress.tsx"),
     route("collapsible", "routes/demo-collapsible.tsx"),
+    route("data-table", "routes/demo-data-table.tsx"),
 
     // Navigation
     route("tabs", "routes/demo-tabs.tsx"),
@@ -50,5 +51,6 @@ export default [
     route("drawer", "routes/demo-drawer.tsx"),
     route("popover", "routes/demo-popover.tsx"),
     route("tooltip", "routes/demo-tooltip.tsx"),
+    route("affix", "routes/demo-affix.tsx"),
   ]),
 ] satisfies RouteConfig
