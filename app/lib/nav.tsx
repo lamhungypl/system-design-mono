@@ -3,6 +3,7 @@ export const nav = [
     items: [
       { label: "Dashboard", href: "/", icon: <GridIcon /> },
       { label: "Components", href: "/components/dashboard", icon: <LayersIcon /> },
+      { label: "Templates", href: "/templates/dashboard/analysis", icon: <TemplatesIcon /> },
     ],
   },
   {
@@ -69,6 +70,14 @@ export const nav = [
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
+function TemplatesIcon() {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="size-4">
+      <rect x="1.5" y="1.5" width="13" height="9" rx="1.5" />
+      <path d="M1.5 14.5h13M4.5 11v3.5M11.5 11v3.5" />
+    </svg>
+  )
+}
 function GridIcon() {
   return (
     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-4">

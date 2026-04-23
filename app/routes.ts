@@ -3,6 +3,31 @@ import { type RouteConfig, index, route } from "@react-router/dev/routes"
 export default [
   index("routes/home.tsx"),
 
+  route("templates", "routes/templates-layout.tsx", [
+    index("routes/templates/index.tsx"),
+    route("dashboard/analysis", "routes/templates/dashboard-analysis.tsx"),
+    route("dashboard/workplace", "routes/templates/dashboard-workplace.tsx"),
+    route("dashboard/monitor", "routes/templates/dashboard-monitor.tsx"),
+    route("form/basic-form", "routes/templates/form-basic.tsx"),
+    route("form/step-form", "routes/templates/form-step.tsx"),
+    route("form/advanced-form", "routes/templates/form-advanced.tsx"),
+    route("list/table-list", "routes/templates/list-table.tsx"),
+    route("list/basic-list", "routes/templates/list-basic.tsx"),
+    route("list/card-list", "routes/templates/list-card.tsx"),
+    route("list/search/articles", "routes/templates/list-search-articles.tsx"),
+    route("list/search/projects", "routes/templates/list-search-projects.tsx"),
+    route("list/search/applications", "routes/templates/list-search-applications.tsx"),
+    route("profile/basic", "routes/templates/profile-basic.tsx"),
+    route("profile/advanced", "routes/templates/profile-advanced.tsx"),
+    route("result/success", "routes/templates/result-success.tsx"),
+    route("result/fail", "routes/templates/result-fail.tsx"),
+    route("exception/403", "routes/templates/exception-403.tsx"),
+    route("exception/404", "routes/templates/exception-404.tsx"),
+    route("exception/500", "routes/templates/exception-500.tsx"),
+    route("account/center", "routes/templates/account-center.tsx"),
+    route("account/settings", "routes/templates/account-settings.tsx"),
+  ]),
+
   route("components", "routes/components-layout.tsx", [
     index("routes/components.tsx"),
     route("dashboard", "routes/components-dashboard.tsx"),
