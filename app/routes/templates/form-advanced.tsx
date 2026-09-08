@@ -18,15 +18,19 @@ function Section({
 }) {
   const [open, setOpen] = useState(defaultOpen)
   return (
-    <div className="rounded-xl border bg-card overflow-hidden">
+    <div className="overflow-hidden rounded-xl border bg-card">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between px-6 py-4 hover:bg-muted/30 transition-colors"
+        className="flex w-full items-center justify-between px-6 py-4 transition-colors hover:bg-muted/30"
       >
-        <span className="font-semibold text-sm">{title}</span>
-        {open ? <ChevronUp className="size-4 text-muted-foreground" /> : <ChevronDown className="size-4 text-muted-foreground" />}
+        <span className="text-sm font-semibold">{title}</span>
+        {open ? (
+          <ChevronUp className="size-4 text-muted-foreground" />
+        ) : (
+          <ChevronDown className="size-4 text-muted-foreground" />
+        )}
       </button>
-      {open && <div className="px-6 pb-6 space-y-0 border-t">{children}</div>}
+      {open && <div className="space-y-0 border-t px-6 pb-6">{children}</div>}
     </div>
   )
 }
@@ -41,10 +45,10 @@ function Field({
   children: React.ReactNode
 }) {
   return (
-    <div className="grid grid-cols-4 gap-4 items-start pt-4">
-      <label className="text-sm font-medium text-right pt-2 text-muted-foreground">
+    <div className="grid grid-cols-4 items-start gap-4 pt-4">
+      <label className="pt-2 text-right text-sm font-medium text-muted-foreground">
         {label}
-        {required && <span className="text-destructive ml-0.5">*</span>}
+        {required && <span className="ml-0.5 text-destructive">*</span>}
       </label>
       <div className="col-span-3">{children}</div>
     </div>
@@ -82,10 +86,12 @@ export default function FormAdvanced() {
   const [members, setMembers] = useState([{ name: "", role: "" }])
 
   return (
-    <div className="p-6 max-w-3xl space-y-4">
+    <div className="max-w-3xl space-y-4 p-6">
       <div className="mb-2">
         <h1 className="text-xl font-semibold">Advanced Form</h1>
-        <p className="text-sm text-muted-foreground mt-0.5">For complex multi-section data entry with collapsible panels.</p>
+        <p className="mt-0.5 text-sm text-muted-foreground">
+          For complex multi-section data entry with collapsible panels.
+        </p>
       </div>
 
       <Section title="Warehouse Information">
@@ -109,14 +115,24 @@ export default function FormAdvanced() {
           <Select options={reviewerOptions} />
         </Field>
         <Field label="Effective Date">
-          <div className="flex gap-2 items-center">
-            <input type="date" className="flex-1 h-9 rounded-lg border border-input bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50" />
+          <div className="flex items-center gap-2">
+            <input
+              type="date"
+              className="h-9 flex-1 rounded-lg border border-input bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+            />
             <span className="text-muted-foreground">–</span>
-            <input type="date" className="flex-1 h-9 rounded-lg border border-input bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50" />
+            <input
+              type="date"
+              className="h-9 flex-1 rounded-lg border border-input bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+            />
           </div>
         </Field>
         <Field label="Type">
-          <RadioGroup options={typeOptions} defaultValue="private" direction="horizontal" />
+          <RadioGroup
+            options={typeOptions}
+            defaultValue="private"
+            direction="horizontal"
+          />
         </Field>
       </Section>
 
@@ -131,17 +147,24 @@ export default function FormAdvanced() {
           <Input placeholder="Search executor" />
         </Field>
         <Field label="Execution Time">
-          <input type="datetime-local" className="h-9 rounded-lg border border-input bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50" />
+          <input
+            type="datetime-local"
+            className="h-9 rounded-lg border border-input bg-background px-3 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          />
         </Field>
         <Field label="Priority">
-          <Select options={priorityOptions} defaultValue="high" className="w-40" />
+          <Select
+            options={priorityOptions}
+            defaultValue="high"
+            className="w-40"
+          />
         </Field>
       </Section>
 
       <Section title="Member Management" defaultOpen={false}>
         <div className="space-y-2 pt-4">
           {members.map((m, i) => (
-            <div key={i} className="flex gap-2 items-center">
+            <div key={i} className="flex items-center gap-2">
               <Input
                 placeholder="Member name"
                 value={m.name}
@@ -176,7 +199,7 @@ export default function FormAdvanced() {
             variant="ghost"
             size="sm"
             onClick={() => setMembers([...members, { name: "", role: "" }])}
-            className="text-primary gap-1.5"
+            className="gap-1.5 text-primary"
           >
             <Plus className="size-4" /> Add Member
           </Button>
