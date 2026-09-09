@@ -8,6 +8,10 @@ export default [
   route("playground", "routes/playground-layout.tsx", [
     index("routes/playground/index.tsx"),
     route("table-modal-changes", "routes/playground/table-modal-changes.tsx"),
+    route(
+      "master-child-review-changes",
+      "routes/playground/master-child-review-changes.tsx"
+    ),
   ]),
 
   route("templates", "routes/templates-layout.tsx", [

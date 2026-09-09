@@ -23,6 +23,19 @@ export default function PlaygroundIndex() {
             </p>
           </Card>
         </Link>
+
+        <Link to="/playground/master-child-review-changes" className="block">
+          <Card className="h-full p-5 transition-colors hover:bg-accent">
+            <h2 className="text-base font-medium">
+              Master–child: &ldquo;View changes&rdquo;
+            </h2>
+            <p className="mt-1.5 text-sm text-muted-foreground">
+              MathGPT&apos;s Review changes dialog rendered two ways off one
+              fixture — the flat list that ships today, and the side-by-side
+              <code> ITEM | CURRENT | NEW </code> diff table Figma specifies.
+            </p>
+          </Card>
+        </Link>
       </div>
     </div>
   )

@@ -6,11 +6,16 @@ import { cn } from "~/lib/utils"
 interface DialogProps {
   open: boolean
   onClose: () => void
+  /**
+   * When false, Escape and backdrop clicks no longer close the dialog — for states the user must
+   * not interrupt, such as an in-flight submit. Defaults to true.
+   */
+  dismissible?: boolean
   children: React.ReactNode
   className?: string
 }
 
-function Dialog({ open, onClose, children, className }: DialogProps) {
+function Dialog({ open, onClose, dismissible = true, children, className }: DialogProps) {
   const ref = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
@@ -32,8 +37,21 @@ function Dialog({ open, onClose, children, className }: DialogProps) {
     return () => el.removeEventListener("close", handle)
   }, [onClose])
 
+  // Escape fires `cancel` before `close`; blocking it here is what makes a non-dismissible dialog
+  // actually stay open, since re-running the open effect wouldn't (its `open` prop never changed).
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const handle = (e: Event) => {
+      if (!dismissible) e.preventDefault()
+    }
+    el.addEventListener("cancel", handle)
+    return () => el.removeEventListener("cancel", handle)
+  }, [dismissible])
+
   // Close on backdrop click
   function handleClick(e: React.MouseEvent<HTMLDialogElement>) {
+    if (!dismissible) return
     if (e.target === ref.current) onClose()
   }
 

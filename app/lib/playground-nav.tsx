@@ -18,6 +18,11 @@ export const playgroundNav = [
         href: "/playground/table-modal-changes",
         icon: <TableIcon />,
       },
+      {
+        label: "Master–child: View changes",
+        href: "/playground/master-child-review-changes",
+        icon: <DiffIcon />,
+      },
     ],
   },
 ]
@@ -67,6 +72,24 @@ function PlaygroundIcon() {
     >
       <circle cx="8" cy="8" r="6.5" />
       <path d="M8 5v6M5 8h6" />
+    </svg>
+  )
+}
+
+function DiffIcon() {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="size-4"
+    >
+      <rect x="1.5" y="3" width="5" height="10" rx="1" />
+      <rect x="9.5" y="3" width="5" height="10" rx="1" />
+      <path d="M7 8h2" />
     </svg>
   )
 }
