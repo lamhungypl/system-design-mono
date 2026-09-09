@@ -18,7 +18,10 @@
       "~/*": ["./app/*"]
     },
     "esModuleInterop": true,
-    "verbatimModuleSyntax": true,
+    // Disabled for app/hr-port/**: the tree copied from dynamic-web-app imports types
+    // without the `type` keyword in hundreds of places. Nothing here emits (noEmit),
+    // so this only relaxes a lint-style check.
+    "verbatimModuleSyntax": false,
     "noEmit": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,

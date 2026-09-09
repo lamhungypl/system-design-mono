@@ -1,0 +1,65 @@
+{
+  "page_title": "Employee List",
+  "button": {
+    "go_to_step_1": "Go to Step 1: Company Profile",
+    "go_to_step_3": "Go to Step 3: Payroll",
+    "import_files": "Import files",
+    "export_files": "Export files",
+    "add_employee": "Add Employee"
+  },
+  "employee_list_table": {
+    "columns": {
+      "code": "Code",
+      "name": "Employee",
+      "employment_type": "Employment Type",
+      "position": "Position",
+      "department": "Department",
+      "start_work_date": "Start Work Date",
+      "status": "Status"
+    }
+  },
+  "filter": {
+    "employment_type": "Employment Type",
+    "position": "Position",
+    "department": "Department",
+    "duration_of_employment": "Duration of Employment"
+  },
+  "export_files_options": {
+    "all": "All",
+    "according_to_selected_filter": "According to selected filter"
+  },
+  "file_name": {
+    "export_employee_file_excel": "Export_Employee_File_Excel_{{date}}",
+    "import_employee_error_file": "Import_Employee_Error_File_{{date}}"
+  },
+  "import_file": {
+    "title": "Import Employee List",
+    "tab_1": "Import File",
+    "tab_2": "History Log",
+    "download_blank_form_label": "Blank form to import all new data",
+    "download_template_employee_label": "Template with employee information to add or edit data",
+    "button": {
+      "import_file": "Import File"
+    },
+    "import_type": {
+      "import_all": "Import All",
+      "only_salary": "Import Salary only"
+    }
+  },
+  "import_history_tab": {
+    "columns": {
+      "file": "File",
+      "imported_by": "Imported By",
+      "status": "Status",
+      "time": "Time"
+    }
+  },
+  "toast_messages": {
+    "file": {
+      "employee": {
+        "not_found": "Import file must contain at least 1 employee.",
+        "too_large": "You can only import up to 1000 employees at a time."
+      }
+    }
+  }
+}

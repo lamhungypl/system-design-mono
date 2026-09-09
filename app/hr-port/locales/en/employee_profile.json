@@ -1,0 +1,327 @@
+{
+  "page_title": "Employment Profile",
+  "profile_info": {
+    "not_set_value": {
+      "position": "Position not set",
+      "department": "Department not set"
+    }
+  },
+  "sidebar": {
+    "employment": "Employment",
+    "attendance": "Attendance",
+    "salary": "Salary",
+    "salary_information": "Salary Information",
+    "payroll_information": "Payroll Information",
+    "payroll_report": "Payroll Report",
+    "settings": "Settings"
+  },
+  "employee_information": {
+    "section_title": "Employee Information",
+    "email_addresses": "Email Addresses",
+    "first_name": "First Name",
+    "employee_no": "Employee No",
+    "last_name": "Last Name",
+    "date_of_birth": "Date of Birth",
+    "gender": "Gender",
+    "id_card_no": "ID Card No",
+    "foreigner": "Foreigner",
+    "employee_nationality": "Nationality",
+    "passport_no": "Passport No",
+    "work_permit_no": "Work Permit No",
+    "date_work_permit_issued": "Date Work Permit Issued",
+    "date_work_permit_expired": "Date Work Permit Expired",
+    "position": "Position",
+    "department": "Department",
+    "work_location": "Work Location",
+    "employment_date": "Employment Date",
+    "employee_status": "Employee Status",
+    "resignation_data": "Resignation Date",
+    "resignation_date": "Resignation Date",
+    "employment_type": "Employment Type",
+    "report_to": "Report Recipient",
+    "tax_id_no": "Tax ID No",
+    "military_status": "Military Status",
+    "change_avatar": "Change avatar",
+    "change_avatar_select_from_default": "Select from default icon",
+    "change_avatar_select_from_device": "Select from your device",
+    "positions": {
+      "officer": "Officer",
+      "senior_officer": "Senior Officer",
+      "supervisor": "Supervisor",
+      "manager": "Manager",
+      "director": "Director",
+      "ceo": "CEO"
+    },
+    "departments": {
+      "admin": "Admin",
+      "accountant": "Accountant",
+      "hr": "HR",
+      "it": "IT",
+      "sale_and_marketing": "Sale and Marketing"
+    }
+  },
+  "contact_information": {
+    "section_title": "Contact Information",
+    "contact_information": {
+      "section_title": "Contact Information",
+      "company_email": "Company Email",
+      "phone": "Phone",
+      "personal_email": "Personal Email",
+      "email_apply_language": "Email Language",
+      "tooltip": {
+        "company_email": "Payslip cannot be sent by email unless you enter an email address."
+      }
+    },
+    "address_information": {
+      "section_title": "Address Information",
+      "country": "Country",
+      "address_section": "Country/Province/District/Sub-district",
+      "district": "District",
+      "address": "Address",
+      "sub_district": "Sub-District",
+      "province_city": "Province / City"
+    },
+    "emergency_contact": {
+      "section_title": "Emergency Contact",
+      "name": "Name",
+      "relationship": "Relationship",
+      "mobile_no": "Mobile No"
+    }
+  },
+  "family_information": {
+    "section_title": "Family Information",
+    "relationship": "Relationship",
+    "grid_family_information": "Family Information",
+    "name": "Name",
+    "date_of_birth": "Date of Birth",
+    "phone": "Phone",
+    "study": "Study",
+    "file_attached": "File Attached",
+    "add_member": "Member",
+    "disable_person": "Disable person",
+    "child_deduction": "Child Deduction"
+  },
+  "work_experience": {
+    "section_title": "Work Experience",
+    "grid_work_experience": "Work Experience",
+    "from": "From",
+    "to": "To",
+    "work_experience_company_name": "Company Name",
+    "position": "Position",
+    "salary": "Salary",
+    "file_attached": "File Attached",
+    "add_work": "Work"
+  },
+  "education": {
+    "section_title": "Education",
+    "grid_education": "Education",
+    "from": "From",
+    "to": "To",
+    "institute": "Institute",
+    "education_degree": "Education Degree",
+    "faculty": "Faculty",
+    "major": "Major",
+    "gpa": "GPA",
+    "file_attached": "File Attached",
+    "graduated_from": "Graduated From",
+    "add_education": "Education"
+  },
+  "employment_contract": {
+    "section_title": "Employment Contract",
+    "from": "From",
+    "grid_employee_contract": "Employee Contract",
+    "to": "To",
+    "contact_name": "Contract Name",
+    "file_attached": "File Attached",
+    "add_contract": "Contract"
+  },
+  "social_security": {
+    "section_title": "Social Security",
+    "social_security_no": "Social Security No",
+    "registration_document": "Registration Document",
+    "nationality": "Nationality",
+    "first_choice_hospital": "First Choice Hospital",
+    "second_choice_hospital": "Second Choice Hospital",
+    "third_choice_hospital": "Third Choice Hospital",
+    "sso_receive_date": "SSO Receive Date",
+    "sso_resignation_reason": "SSO Resignation Reason",
+    "remark": "Remark"
+  },
+  "taxation": {
+    "section_title": "Taxation",
+    "tax_no": "Tax No",
+    "registration_document": "Registration Document",
+    "nationality": "Nationality",
+    "sso_receive_date": "SSO Receive Date",
+    "remark": "Remark"
+  },
+  "deduction_settings": {
+    "section_title": "Deduction Settings",
+    "tooltip": {
+      "section_title": "Once saved, your deduction update will be effective right away."
+    },
+    "deduction_personal_and_family": {
+      "section_title": "Personal and Family",
+      "personal_expense_allowance": "Personal Expense Allowance",
+      "personal_allowance_and_marriage_status": "Personal Allowance and Marriage Status",
+      "parental_care_allowance": "Parental Care Allowance",
+      "antenatal_care_allowance": "Antenatal Care Allowance",
+      "child_allowance": "Child Allowance",
+      "disabled_person_or_incompetent_person_support": "Disabled Person or Incompetent Person Support",
+      "placeholder": {
+        "parental_care_allowance": "",
+        "personal_allowance_and_marriage_status": "",
+        "antenatal_care_allowance": "Not more than 60,000"
+      },
+      "tooltip": {
+        "personal_expense_allowance": "The allowance is limited to 50% of the assessable income, with a maximum of 100,000 THB. Employees are required to input their salary in the salary information section",
+        "personal_allowance_and_marriage_status": "Eligible for a ฿60,000 allowance, with a combined allowance of ฿120,000 for spouse filing together.",
+        "parental_care_allowance": "Eligible for a ฿30,000 allowance per person with a combined limit of ฿120,000,provided the parent must be 60 years or older with an annual income of no more than ฿30,000.",
+        "antenatal_care_allowance": "Eligible for an annual allowance up to ฿60,000 per pregnancy based on actual expenses.",
+        "child_allowance": "Eligible for a ฿30,000 allowance per child, with an additional ฿30,000 for the second child and onwards born before 2018. For children born in or after 2018, eligible for a ฿60,000 allowance per child, applicable up to the age of 25 years. If Child Allowance = 0, there is no child records in Family information or Child allowance condition are not met.",
+        "disabled_person_or_incompetent_person_support": "Eligible for a ฿60,000 allowance per individual with an annual income of no more than ฿30,000. If Allowance = 0, there is no disabled people records in Family information"
+      }
+    },
+    "deduction_insurance": {
+      "section_title": "Insurance",
+      "annuity_insurance_premium": "Annuity Insurance Premium",
+      "personal_health_insurance_premium": "Personal Health Insurance Premium",
+      "health_insurance_premium_for_parents": "Health Insurance Premium For Parents",
+      "health_insurance_premium_for_spouse": "Health Insurance Premium For Spouse",
+      "placeholder": {
+        "annuity_insurance_premium": "Not more than 200,000",
+        "personal_health_insurance_premium": "Not more than 100,000",
+        "health_insurance_premium_for_parents": "Not more than 15,000",
+        "health_insurance_premium_for_spouse": "Not more than 10,000"
+      },
+      "tooltip": {
+        "annuity_insurance_premium": "Eligible for an annual allowance of 15% of Assessable income and not over ฿200,000, based on actual expenses.",
+        "personal_health_insurance_premium": "Eligible for an annual allowance of 15% of Assessable income and not over ฿100,000, based on actual expenses.",
+        "health_insurance_premium_for_parents": "Eligible for an annual allowance up to ฿15,000 based on actual expenses.",
+        "health_insurance_premium_for_spouse": "Eligible for an annual allowance up to ฿10,000 based on actual expenses."
+      }
+    },
+    "deduction_other": {
+      "section_title": "Other",
+      "social_security_fund_contribution": "Social Security Fund Contribution",
+      "provident_fund": "Provident Fund",
+      "pension_life_insurance": "Pension life insurance",
+      "retirement_mutual_fund": "Retirement Mutual Fund (RMF)",
+      "super_savings_fund_unit_purchase": "Super Savings Fund Unit Purchase (SSF)",
+      "thai_mutual_fund_for_sustainability": "Thai Mutual Fund For Sustainability (TESG)",
+      "teacher_aid_fund_contribution": "GPEF/GPF/Private Teacher Aid Fund Contribution",
+      "interest_paid_on_mortgage_loan_for_purchase": "Interest paid on mortgage loan for purchase or construction of residence",
+      "educational_support_donation": "Educational Support Donation",
+      "general_donations": "General Donations",
+      "easy_e_receipt": "Easy E-Receipt",
+      "social_enterprise_investment_fund": "Social Enterprise Investment Fund",
+      "placeholder": {
+        "social_security_fund_contribution": "Not more than 9,000",
+        "pension_life_insurance": "Not more than 200,000",
+        "retirement_mutual_fund": "Not more than 500,000",
+        "super_savings_fund_unit_purchase": "Not more than 200,000",
+        "thai_mutual_fund_for_sustainability": "Not more than 300,000",
+        "teacher_aid_fund_contribution": "Not more than 500,000",
+        "interest_paid_on_mortgage_loan_for_purchase": "Not more than 100,000",
+        "educational_support_donation": "2X donation within 10%",
+        "general_donations": "10% of donation",
+        "easy_e_receipt": "Not more than 50,000",
+        "social_enterprise_investment_fund": "Not more than 100,000"
+      },
+      "tooltip": {
+        "social_security_fund_contribution": "Eligible for an annual allowance up to ฿9,000 based on actual expenses.",
+        "provident_fund": "Maximum allowance is 15% of Total Taxable Revenue and not over 500,000 THB (Provident Fund + RMF + SSF + Pension Life Insurance is not over 500,000 THB)",
+        "pension_life_insurance": "Maximum allowance is 15% of Total Taxable Revenue and not over 200,000 THB (Provident Fund + RMF + SSF + Pension Life Insurance is not over 500,000 THB)",
+        "retirement_mutual_fund": "Eligible for an annual allowance up to 30% of Assessable income but not over ฿500,000, based on actual expenses.",
+        "super_savings_fund_unit_purchase": "Eligible for an annual allowance up to 30% of Assessable income but not over ฿200,000 based on actual expenses.",
+        "thai_mutual_fund_for_sustainability": "Eligible for an annual allowance up to 30% of Assessable income but not over ฿300,000, based on actual expenses.",
+        "teacher_aid_fund_contribution": "Eligible for an annual allowance of 15% of Assessable income but not over ฿500,000, for GPEF and Private Teacher Aid Fund Contribution. With GPF contribution eligible for double the allowance percentage of income but not over ฿500,000 based on actual expenses.",
+        "interest_paid_on_mortgage_loan_for_purchase": "Eligible for an annual allowance up to ฿100,000 based on actual expenses.",
+        "educational_support_donation": "Eligible for an annual allowance at twice the actual donation amount, up to 10% of income minus expenses and other allowances.",
+        "general_donations": "Eligible for an annual allowance up to 10% of income minus expenses and other allowances.",
+        "easy_e_receipt": "Eligible for an annual allowance based on actual expenses incurred from January 1 to February 15, 2024, but not over ฿50,000.",
+        "social_enterprise_investment_fund": "Eligible for an annual allowance up to ฿100,000 based on actual expenses."
+      }
+    }
+  },
+  "salary_information": {
+    "title": "Salary Information",
+    "payment_method": "Payment Method",
+    "bank_account": "Bank Account",
+    "bank_no": "Bank No",
+    "employment_type": "Employment Type",
+    "salary": "Salary",
+    "salary_1": "Hourly Wage",
+    "salary_2": "Daily Wage",
+    "salary_3": "Salary",
+    "notification": "An update salary information is pending for approval",
+    "hyperlink": {
+      "approve": "Click to approve",
+      "view": "Click to view"
+    },
+    "salary_movement": {
+      "title_salary_movement": "Salary Movement",
+      "title_approve_salary_movement": "Approve Salary Movement",
+      "effective": "Effective Date",
+      "remark": "Remark",
+      "original_data": "Original Data",
+      "new_value": "New Value",
+      "salary": "Salary",
+      "approver": "Approver",
+      "note": "Salary information will be effective follow by date effective.",
+      "button": {
+        "request_to_approve": "Request to Approve",
+        "reject": "Reject",
+        "approve": "Approve"
+      }
+    }
+  },
+  "salary_history": {
+    "title": "Salary Adjustment History",
+    "title_table": "Salary",
+    "effective_date": "Effective Date",
+    "previous_salary": "Previous Salary",
+    "current_salary": "Current Salary",
+    "salary_change_percent": "%Change",
+    "modify_by": "Modified By",
+    "approve_by": "Approved By",
+    "time": "Time",
+    "no_change": "N/A"
+  },
+  "payroll_information": {
+    "title": "Payroll Information",
+    "payroll_period": "Payroll Period",
+    "income": "Income",
+    "deduction": "Deduction",
+    "total_income": "Total Income",
+    "total_deduction": "Total Deduction",
+    "net_pay": "NET Pay"
+  },
+  "settings": {
+    "general": "General Settings",
+    "security": "Security",
+    "display": "Display",
+    "theme": "Theme",
+    "change_theme": "Change theme",
+    "choose_color": "Choose color theme below:",
+    "notification": "Notification",
+    "push_notification": "Push Notification",
+    "email": "Email",
+    "password": "Password",
+    "change_password": "Change password",
+    "picture_profile": "Picture Profile"
+  },
+  "approver-selection-dialog": {
+    "title": "Approver Selection",
+    "description": "All changes have been temporarily saved. However, they will only be applied once approved by your direct managers. Please select at least one approver to proceed with your change request:",
+    "approver": "Approver",
+    "confirm-dialog": {
+      "title": "Confirmation",
+      "description": "Are you sure you want to send the request?"
+    }
+  },
+  "pending_message": {
+    "continue_edit": "Employment profile change pending, continue editing here!",
+    "still_wait_for_approval": "Employment profile change is still awaiting for approval!"
+  }
+}

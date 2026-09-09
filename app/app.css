@@ -128,3 +128,81 @@
     @apply font-sans;
     }
 }
+/* ─────────────────────────────────────────────────────────────────────────────
+   hr-port support (app/hr-port/**, copied from dynamic-web-app)
+   Only the bits that affect layout are faithful; colours are best-effort so the
+   copied classNames resolve to *something* — this playground is about layout and
+   dialog/popover behaviour, not the source palette.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* fontSize.xxs from the source tailwind.config.js */
+  --text-xxs: 0.625rem;
+  --text-xxs--line-height: 1.6;
+
+  /* spacing/height tokens the copied form controls rely on */
+  --spacing-form-control-height: 40px;
+  --spacing-form-label-height: 40px;
+
+  /* extra breakpoint the source defines */
+  --breakpoint-3xl: 1792px;
+
+  /* source palette (best-effort) */
+  --color-action-red: hsl(356 74.8% 48.2%);
+  --color-action-blue: hsl(207 100% 38.8%);
+  --color-action-gray: hsl(0 4.3% 86.5%);
+  --color-action-green: hsl(145 62% 36%);
+  --color-gray-border: #e8e8e8;
+  --color-danger: #d71f2a;
+  --color-primary-light: hsl(145 100% 98%);
+
+  --shadow-top: 0px -4px 10px 0px #3838381a;
+  --shadow-buttons-bar: 0 3px 6px rgba(111, 111, 111, 0.2);
+}
+
+/* Components/utilities the source registers through a tailwind plugin. */
+.dialog-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: var(--card);
+  display: flex;
+  flex-direction: row;
+  border-bottom-right-radius: var(--radius);
+  border-bottom-left-radius: var(--radius);
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.dialog-padding {
+  padding-left: 28px;
+  padding-right: 24px;
+}
+
+/* 36px of buttons + 2 * 24px of paddings + 8px of extra space */
+.dialog-content-padding {
+  padding-bottom: 92px;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* from the source's text.scss */
+.asterisk::after {
+  content: "*";
+}
+.red-asterisk::after {
+  content: "*";
+  color: red;
+}

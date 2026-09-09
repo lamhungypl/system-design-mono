@@ -1,0 +1,470 @@
+{
+  "sidebar": {
+    "income_deduction": "Income/Deduction Setting",
+    "income": "Income",
+    "deduction": "Deduction",
+    "employment_type": "Employment Type",
+    "period": "Payroll Period"
+  },
+  "title": "Payroll",
+  "go_to_step": "Go to Step {{step}}: {{page}}",
+  "options": {
+    "income_type.income_40_2.label": "40 (2) Recipient is located in the country",
+    "income_type.income_40_1.label": "40 (1) Salary and wages",
+    "income_type.income_40_1_2.label": "40 (1) (2) Severance pay",
+    "tax_calculation_type.tax_calculation_none.label": "None",
+    "tax_calculation_type.tax_calculation_all_year.label": "All-year",
+    "tax_calculation_type.tax_calculation_one_time.label": "One-time",
+    "rounding_type.rounding_no_adjust.label": "No Adjust",
+    "rounding_type.rounding_round_up.label": "Round Up",
+    "rounding_type.rounding_round_down.label": "Round Down",
+    "rounding_type.rounding_money_adjustment_social.label": "Money Adjustment Social",
+    "frequency_of_payment.every_period.label": "Every period",
+    "frequency_of_payment.the_last_period_of_the_month.label": "The last period of the month"
+  },
+  "income_type": "Income type",
+  "rounding_type": "Rounding",
+  "frequency_of_payment": "Frequency of Payment",
+  "tax_calculation_type": "Tax Calculation",
+  "is_common_benefit": "Check if it's an common benefit",
+  "is_calc_off_period": {
+    "label": "Calculate during the off-cycle period",
+    "tooltip": "To calculate the income or deduction which are made outside of the regular period and paid in the current period."
+  },
+  "is_social_security_fund": "Social Security Fund",
+  "is_provident_fund": "Provident Fund",
+  "is_overtime": "Overtime",
+  "is_late_leave_deduction": "Late/Leave Deduction",
+  "payment_conditions": "Payment Conditions:",
+  "other_conditions": "Other Conditions:",
+  "subject_to": "Subject to:",
+  "exits_approve_salary_movement": "There is a pending salary movement request not approved yet. You're not allowed to create a second request.",
+  "other_languages": "Other Languages",
+  "no_employment_type_found": "No employment type found.",
+  "income": {
+    "title": {
+      "list": "Income Setting"
+    },
+    "action": {
+      "add": "Add Income",
+      "edit": "Edit Income"
+    },
+    "table": {
+      "code": "Code",
+      "income_name": "Income Name",
+      "is_calc_off_period": "Off-period",
+      "tax_calculation_type": "Calculate tax",
+      "status": "Status",
+      "custom_created_section": "Custom created list "
+    },
+    "income_code": "Income code",
+    "name": "Income Name (English)",
+    "name_th": "Income Name (Thai)",
+    "name_jp": "Income Name (Japanese)",
+    "tax_calculation_type.warning": "Not calculating tax for this income may result in errors in tax documentation such as P.N.D 1, P.N.D 1 Kor, Kor Tor 20 as well as the Section 50 Bis for employees later on. Please carefully consider any changes.",
+    "tax_calculation_type.tooltip": "Determine whether the income or deduction will be taxable or not. <br/>In the case of All-year calculation, this amount will be automatically calculated as a regular income tax.<br/>In the case of One-time calculation, suitable for the irregular income or deduction, this amount will be used for tax calculation only in the selected period.",
+    "income_value.label": "Income value",
+    "income_value.warning": "New value will automatically replace all previous entries",
+    "income_value.tooltip": "With a fixed income which is applied for all employees, you can set up a specific amount here!",
+    "frequency_of_payment.tooltip": "In condition Every Period, this income will be paid in every period. (Suitable for cases in which there is more than 1 payment per month.)<br>In condition The Last Period of Month, this income will be paid in the last period of the month (E.g. If the payment is scheduled for 2 times per month, this addition will be paid in the 2nd time.)"
+  },
+  "deduction": {
+    "title": {
+      "list": "Deduction Setting"
+    },
+    "action": {
+      "add": "Add Deduction",
+      "edit": "Edit Deduction"
+    },
+    "table": {
+      "code": "Code",
+      "deduction_name": "Deduction Name",
+      "is_calc_off_period": "Off-period",
+      "tax_calculation_type": "Calculate tax",
+      "status": "Status",
+      "custom_created_section": "Custom created list "
+    },
+    "deduction_code": "Deduction code",
+    "name": "Deduction Name (English)",
+    "name_th": "Deduction Name (Thai)",
+    "name_jp": "Deduction Name (Japanese)",
+    "deduction_value.label": "Deduction value",
+    "deduction_value.warning": "New value will automatically replace all previous entries",
+    "deduction_value.tooltip": "With a fixed deduction which is applied for all employees, you can set up a specific amount here!",
+    "tax_calculation_type.warning": "Not calculating tax for this deduction may result in errors in tax documentation such as P.N.D 1, P.N.D 1 Kor, Kor Tor 20 as well as the Section 50 Bis for employees later on. Please carefully consider any changes.",
+    "frequency_of_payment.tooltip": "In condition Every Period, this deduction will be paid in every period. (Suitable for cases in which there is more than 1 payment per month.)<br>In condition The Last Period of Month, this deduction will be paid in the last period of the month (E.g. If the payment is scheduled for 2 times per month, this addition will be paid in the 2nd time.)"
+  },
+  "toast_messages": {
+    "error": {
+      "existed_income_deduction_name": "Income / Deduction name already exists. Please enter a unique value."
+    }
+  },
+  "period": {
+    "button_create": "Create Period",
+    "title": {
+      "list": "Payroll Period",
+      "create": "Create Payroll Period",
+      "edit": "Edit Payroll Period",
+      "calculation": "Payroll Calculation"
+    },
+    "period_list_table": {
+      "no": "Period No",
+      "period_date": "Period Date",
+      "employment_type": "Employment Type",
+      "payment_date": "Payment Date",
+      "total_employee": "Total Employee",
+      "paid_net": "Paid Net",
+      "branch_codes": "Company/Branch",
+      "year": "Year",
+      "UPCOMING": "Upcoming",
+      "WAITING_FOR_CALCULATING": "Waiting for Calculating",
+      "WAITING_FOR_VERIFYING": "Waiting for Verifying",
+      "WAITING_FOR_APPROVING": "Waiting for Approving",
+      "WAITING_FOR_CLOSING": "Waiting for Closing",
+      "WAITING_FOR_PAYMENT": "Waiting for Payment",
+      "PAID": "Paid",
+      "no_data": "There is no payroll period yet. Click on \"Create Period\" to create one.",
+      "N/A": "N/A"
+    },
+    "form": {
+      "period_prefix": "Period",
+      "company_branch": "Company/Branch",
+      "employment_types": "Employment Type",
+      "payment_period": "Payment Period",
+      "payment_period_type": {
+        "label": "Payment Period Type:",
+        "monthly": "Monthly",
+        "two_period": "2 periods/month",
+        "three_period": "3 periods/month",
+        "weekly": "Weekly"
+      },
+      "payment_period_type_monthly": "Monthly",
+      "payment_period_type_2monthly": "2 periods/month",
+      "payment_period_type_3monthly": "3 periods/month",
+      "payment_period_type_weekly": "Weekly",
+      "start_date_of_the1st_period": "Start Date of the 1st Period",
+      "start_period": "Start Period",
+      "start_period_tooltip": "Payroll periods will be generated from {{start_date}} to {{end_date}} (Total of {{total}} Periods) and started to calculate from the period {{start_period}}",
+      "payroll_payment": "Payroll Payment",
+      "is_payment_before_day_off": "If the payment date falls on a holiday/weekend, the employees will receive the payment on the previous day.",
+      "payment_date": "Payment Date",
+      "payment_date_1": "First Payment Date",
+      "payment_date_2": "Second Payment Date",
+      "payment_date_3": "Third Payment Date",
+      "payment_date_of_period_request": {
+        "END_OF_MONTH": "At the end of month",
+        "AT_SPECIFIC_DAY_OF_MONTH": "of every month",
+        "AT_SPECIFIC_DAY_OF_NEXT_MONTH": "of next month",
+        "AT_SPECIFIC_DAY_OF_WEEK": "of every week",
+        "AT_SPECIFIC_DAY_OF_NEXT_WEEK": "of next week"
+      },
+      "other_conditions": "Other Conditions",
+      "off_cycle_period": "Off-cycle Payroll",
+      "off_cycle_period_tooltip": "To calculate the income or deduction which are made outside of the regular period and paid in the current period.",
+      "start_calculating_from": "Start calculating from",
+      "off_cycle_payroll_warning": "Generate the off-cycle payroll period from {{start}} To {{end}}.",
+      "period_date": "Period Date",
+      "off_cycle_payroll": "Calculate during the off-cycle period",
+      "off_cycle_payroll_tooltip": "To calculate the income or deduction which are made outside of the regular period and paid in the current period.",
+      "calculating_from": "Off-cycle Start",
+      "calculating_to": "Off-cycle End"
+    },
+    "calculation": {
+      "status": {
+        "WAITING_FOR_CALCULATING": {
+          "reset_data": "Reset Data",
+          "re_calculate": "Re-Calculate",
+          "next_action": "Request Verify"
+        },
+        "WAITING_FOR_VERIFYING": {
+          "back_action": "Return to Edit",
+          "next_action": "Request Approve"
+        },
+        "WAITING_FOR_APPROVING": {
+          "back_action": "Return to Edit",
+          "next_action": "Approve"
+        },
+        "WAITING_FOR_CLOSING": {
+          "back_action": "Return to Edit",
+          "next_action": "Close Period"
+        },
+        "WAITING_FOR_PAYMENT": {
+          "back_action": "Return to edit",
+          "next_action": "Deliver to Bank "
+        },
+        "PAID": {
+          "back_action": "Return to edit",
+          "next_action": "Deliver to Bank "
+        }
+      },
+      "message": {
+        "payroll_calculated_success": "Payroll has been calculated successfully",
+        "request_verify_payroll_success": "Payroll verification has been successfully requested",
+        "verify_payroll_success": "Payroll has been verified successfully",
+        "approve_payroll_success": "Payroll has been approved successfully",
+        "close_payroll_success": "Payroll has been closed successfully",
+        "reject_payroll_success": "Payroll has been rejected",
+        "payment_payroll_success": "Payroll has been payment successfully"
+      }
+    }
+  },
+  "employment_type": {
+    "daily": "Daily",
+    "monthly": "Monthly",
+    "daily_wage_calc": "Daily Wage Calculation",
+    "paid_legal_holiday": "Paid legal holiday",
+    "paid_hourly": "Paid Hourly",
+    "standard": "Standard 30 days",
+    "actual_days": "Actual days of month",
+    "custom": "Custom",
+    "custom_days_of_month": "Days for Dividing",
+    "custom_days_of_month_tooltip": "Display the number of days used to divide the income or deduction from the monthly rate to daily rate, such as attendance deduction.",
+    "fixed_working_hour": "Fixed working hour in a day",
+    "fixed_working_day": "days",
+    "fixed_working_hour_in_day": "hours",
+    "fixed_working_minute_in_day": "minutes",
+    "income_and_deduction": "Income and Deduction",
+    "overtime": "Overtime",
+    "late": "Late",
+    "early": "Early",
+    "absence": "Absence",
+    "late_warning": "Please check this information before setting Late, Early and Absence Conditions.",
+    "late_tooltip": "１．Please check the Thai Labor Protection Act in advance regarding deductions for tardiness, etc.<br>２．Please make sure that the employer and the employee have an employment contract and employment regulations regarding deductions.<br>３．If you are not sure, please consult your legal advisor regarding Article 76 of the Thai Labor Act.",
+    "deduction_type": "Deduction Type",
+    "deduction_type_no": "No deductions",
+    "deduction_type_deducted": "Amount Deducted",
+    "calculate_deduction_by": "Calculate Deduction by",
+    "calculate_deduction_by_actual": "Actual Pay Rate",
+    "late_exemption_for": "Late Exemption for",
+    "late_exemption_for_unit_1": "minutes",
+    "late_exemption_for_unit_2": "times",
+    "percentage_of_daily_wage": "Percentage of Daily Wage",
+    "amount_deducted": "Amount deducted",
+    "ot_fix_rate": "Fix rate OT",
+    "ot_per_hour": "Overtime per hour",
+    "ot_rate_setup": "OT Rate Set Up",
+    "work_duration": "Work duration",
+    "work_duration_unit": "Times",
+    "ot_out_working_time_weekdays": "Overtime outside working time on weekdays",
+    "ot_out_working_time_weekends": "Overtime outside working time on weekend/ holiday",
+    "ot_in_working_time_weekends": "Overtime inside working time on weekend/holiday"
+  },
+  "popup_info": {
+    "payroll_information": {
+      "title": "Payroll Information",
+      "from_to_date": "Payroll period",
+      "income": {
+        "label": "Income",
+        "base_salary": "Base Salary",
+        "overtime": "OT",
+        "position_allowance": "Position Allowance",
+        "bonus": "Bonus",
+        "total": "Total Income"
+      },
+      "deduction": {
+        "label": "Deduction",
+        "late_or_leave_early_deduction": "Late/leave early Deduction",
+        "leave_without_pay_(absence)": "Leave Without Pay (Absence)",
+        "withholding_tax": "Withholding Tax",
+        "social_security_fund": "Social Security Fund",
+        "provident_fund": "Provident Fund",
+        "total": "Total deduction"
+      },
+      "net_pay": "NET Pay"
+    },
+    "salary_information": {
+      "title": "Salary information",
+      "form": {
+        "payment_method": "Payment Method",
+        "bank_account": "Back Account",
+        "employment_type": "Employment Type",
+        "bank_no": "Bank No",
+        "salary": "Salary"
+      },
+      "notification": "An update salary information is pending for approval",
+      "hyperlink": "Click To Approve"
+    },
+    "payroll_report": {
+      "title": "Payroll Report",
+      "net_pay": "Net Pay",
+      "no_data": "N/A",
+      "table": {
+        "title": "List Payslips",
+        "columns": {
+          "payslips": "Payslips",
+          "net_pay": "Net Pay",
+          "total_income": "Total Income",
+          "total_deduction": "Total Deduction",
+          "withholding_tax": "Withholding Tax"
+        }
+      }
+    }
+  },
+  "calculation": {
+    "title": "Payroll Calculation",
+    "history_log": "History log",
+    "payment": {
+      "title": "Payment Method"
+    },
+    "department": {
+      "title": "Department"
+    },
+    "branch": {
+      "title": "Branch"
+    },
+    "dialog_confirm": {
+      "description": {
+        "reset_data": "Are you sure you want to reset data?"
+      },
+      "warning": {
+        "reset_data": "Payroll data calculated for this period will be deleted and cannot be recovered."
+      }
+    },
+    "employees": {
+      "selected_employee": "Selected: {{count}} / {{max}}",
+      "income": {
+        "title": "Income",
+        "tooltip": "System calculate"
+      },
+      "deduction": {
+        "title": "Income",
+        "tooltip": "System calculate"
+      },
+      "columns": {
+        "code": "Code",
+        "employee": "Employee",
+        "edited_item": "Edited Items",
+        "old_value": "Old value",
+        "new_value": "New value",
+        "change_value": "Change value",
+        "paid_net": "Paid Net",
+        "note": "Note",
+        "modified": "Modified by",
+        "time": "Time"
+      },
+      "no_tax_id": "No tax ID no",
+      "total": "Total",
+      "invalid_attendance_data": "Some employees’ attendance data haven’t closed yet. Please check again in KOT TA",
+      "invalid_employee_profile": "Some employees' employment information and salary information are not yet completed. Please <0>check again</0>.",
+      "auto_calculation": "Switch to auto calculation",
+      "manual_calculation": "Switch to manual calculation"
+    },
+    "payroll_calculation_log": {
+      "title": "Payroll Calculation Log",
+      "table": {
+        "columns": {
+          "payroll_period": "Payroll Period",
+          "modified_by": "Modified by",
+          "action": "Action",
+          "time": "Time"
+        }
+      },
+      "actions": {
+        "REQUEST_VERIFY": "Request Verify",
+        "APPROVE_PAYROLL": "Approve Payroll",
+        "DELIVER_TO_BANK": "Deliver to Bank",
+        "VERIFY_PAYROLL": "Verify Payroll",
+        "CLOSE_PAYROLL": "Close Payroll",
+        "REJECT_PAYROLL_DELIVERY_TO_BANK": "Reject Payroll Delivery to Bank",
+        "REJECT_PAYROLL_VERIFICATION": "Reject Payroll Verification",
+        "REJECT_PAYROLL_APPROVAL": "Reject Payroll Approval",
+        "REJECT_PAYROLL_CLOSING": "Reject Payroll Closing"
+      }
+    },
+    "import_payroll_log": {
+      "title": "Import Payroll Log",
+      "table": {
+        "columns": {
+          "file": "File",
+          "imported_by": "Imported by",
+          "status": "Status",
+          "time": "Time"
+        }
+      }
+    }
+  },
+  "import_file": {
+    "title": "Import Payroll",
+    "tab_1": "Import File",
+    "tab_2": "History Log",
+    "download_blank_form_label": "Blank form to import all new data",
+    "download_template_employee_label": "Template with employee information to add or edit data",
+    "button": {
+      "import_file": "Import File"
+    },
+    "confirm_dialog": {
+      "title": "Confirmation",
+      "description": "Are you sure you want to import file?"
+    }
+  },
+  "file_name": {
+    "export_payroll_excel": "Export_Payroll_Excel_{{date}}",
+    "import_payroll_blank_template_csv": "Import_Payroll_Blank_Template_CSV_{{date}}",
+    "import_payroll_template_csv": "Import_Payroll_Template_CSV_{{date}}",
+    "import_file_name_error": "import_file_name_error_{{date}}"
+  },
+  "report": {
+    "export_file": "Export File",
+    "year": "Year",
+    "period": "Payroll Period",
+    "branch": "Branch",
+    "department": "Department",
+    "report_for": "Report for",
+    "document": "Document",
+    "go_to_document": "Go to document",
+    "language_format": "Language Format",
+    "document_export_type": "Document Type",
+    "document_export_type_cover_page": "Cover Page",
+    "document_export_type_attachment": "Attachment",
+    "submission_date": "Submission Date",
+    "surcharge": "Surcharge",
+    "document_type": {
+      "payslip": "Payslip",
+      "payroll_report": "Payroll Report",
+      "pnd1": "P.N.D.1",
+      "pnd1_kor": "P.N.D.1 Kor",
+      "tawi50": "Tawi50"
+    },
+    "payer": {
+      "label": "Payer",
+      "options": {
+        "WITH_HOLD_AT_SOURCE": "(1) Withhold at source",
+        "PAY_EVERYTIME": "(2) Pay every time",
+        "PAY_ONETIME": "(3) Pay one time",
+        "OTHER": "(4) others (Please specify)...."
+      }
+    },
+    "customized_items_for_template": "Customized items for template:",
+    "payroll_report_not_paid_warning": "Due to some pending periods this year, the results won't be complete for the entire year. Click <0>here</0> to recheck.",
+    "toast_messages": {
+      "success": {
+        "download_report_success": "Please come back to get your downloaded file after a moment!"
+      },
+      "error": {
+        "empty_income_deduction": "Failed export due to all incomes/deduction of selected employee are 0.00.",
+        "request_timeout": "The file is too large to preview. Please download it to view."
+      }
+    }
+  },
+  "report_history": {
+    "title": "Exported Files",
+    "table": {
+      "columns": {
+        "document_type": "Document Type",
+        "document_name": "Document Name",
+        "status": "Status",
+        "exported_by": "Exported By",
+        "created_at": "Time"
+      },
+      "status": {
+        "SUCCESS": "Success",
+        "FAILURE": "Failure",
+        "IN_PROGRESS": "In Progress"
+      }
+    },
+    "failed_message": {
+      "empty_income_deduction": "Failed export due to all incomes/deduction of selected employee are 0.00.",
+      "system_error": "System error."
+    }
+  }
+}

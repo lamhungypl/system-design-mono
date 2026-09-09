@@ -1,0 +1,55 @@
+{
+  "page_title": "Guidelines Set Up",
+  "columns": {
+    "screen": "Target Screen",
+    "file_no": "File {{number}}",
+    "resource_url": "Resource URL",
+    "updated_by": "Updated By",
+    "updated_at": "Updated At"
+  },
+  "groups": {
+    "COMMON": "Common feature",
+    "HR_SETTINGS": "HR Settings",
+    "PAYROLL_SETTINGS": "Payroll Settings",
+    "STANDARD_SETTINGS": "Standard Setting Configuration"
+  },
+  "screens": {
+    "HOME": "Home",
+    "THEME_SETTINGS": "Theme Settings",
+    "EMAIL_CONFIGURATION": "Email Configuration",
+    "PERMISSION_SETTINGS": "Permission Settings",
+    "COMPANY_PROFILE": "Company Profile",
+    "EMPLOYEE_LIST": "Employee List",
+    "EMPLOYEE_PROFILE": "Employee Profile",
+    "REQUEST_AWAITING_MY_APPROVAL": "Request Awaiting My Approvals",
+    "INCOME_AND_DEDUCTION": "Income and Deduction",
+    "EMPLOYMENT_TYPE": "Employment Type",
+    "PAYROLL_PERIOD_LIST": "Payroll Period List",
+    "CREATE_PAYROLL_PERIOD": "Create Payroll Period",
+    "PAYROLL_PERIOD_TABLE": "Payroll Period Table",
+    "COMPANY_STANDARD_CONFIGURATION": "Company Standard Configuration",
+    "ONBOARDING_SCREEN": "Onboarding Screen"
+  },
+  "buttons": {
+    "add": "Add Target Screen"
+  },
+  "dialog": {
+    "title": {
+      "edit": "Edit Target Screen",
+      "add": "Add Target Screen"
+    }
+  },
+  "filters": {
+    "language": "Guideline Language"
+  },
+  "fields": {
+    "upload_pdf_files": "PDF Files"
+  },
+  "validation": {
+    "atleast_one_file_or_url": "Please upload at least one PDF file or an resource URL."
+  },
+  "guide_line_icon": {
+    "pdf_file": "(PDF File)",
+    "guide_line_link": "Guideline Link"
+  }
+}

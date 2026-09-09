@@ -1,0 +1,134 @@
+{
+  "page_title": "Permission Settings",
+  "page_description": "Configure feature permissions for users.",
+  "permissions": {
+    "title": "Permissions",
+    "columns": {
+      "EMPLOYEE": "Employee",
+      "ACCOUNTANT": "Accountant",
+      "permission": "Feature List"
+    },
+    "common": {
+      "title": "Common",
+      "features": {
+        "VIEW_MENU_BAR": "View Menu Bar",
+        "VIEW_HOME": "View Home",
+        "VIEW_FAQS": "View Guidelines",
+        "FAQS_IN_PROGRESS": "View Guidelines",
+        "VIEW_THEME_SETTING_SCREEN": "View Theme Setting Screen",
+        "UPDATE_SYSTEM_THEME": "Update System Theme",
+        "VIEW_EMAIL_CONFIGURATION": "View Email Configuration",
+        "UPDATE_EMAIL_CONFIGURATION": "Update Email Configuration",
+        "VIEW_PERMISSIONS_SETTING": "View Permission Management Screen",
+        "UPDATE_PERMISSIONS_SETTING": "Update Permission"
+      }
+    },
+    "hr_settings_company_profile": {
+      "title": "HR Settings - Company Profile",
+      "features": {
+        "VIEW_COMPANY_PROFILE": "View Company Profile",
+        "UPDATE_COMPANY_PROFILE": "Update Company Profile"
+      }
+    },
+    "hr_settings_employee_profile": {
+      "title": "HR Settings - Employee Profile",
+      "features": {
+        "VIEW_EXPORT_EMPLOYEE_LIST_VIEW_ALL_EMPLOYEE_PROFILES": "View & Export Employee List & View All Employee Profiles",
+        "VIEW_AND_UPDATE_OWN": "View & Update Your Own Employee Profile",
+        "UPDATE_ALL_EMPLOYEE_PROFILES_VIEW_APPROVAL_REQUEST_PAGE_EMPLOYMENT_PROFILE_CHANGE_REQUEST": "Update All Employee Profiles & View Approval Page & Approve Employment Profile Change Requests",
+        "VIEW_SALARY_INFORMATION": "View Salary Information",
+        "SAVE_SALARY_INFORMATION": "Save Salary Information",
+        "VIEW_PAYROLL_INFORMATION_IN_PROGRESS": "View Payroll Information",
+        "VIEW_PAYROLL_REPORT_IN_PROGRESS": "View Payroll Report"
+      }
+    },
+    "payroll_settings_income_and_deduction": {
+      "title": "Payroll Settings - Income And Deduction",
+      "features": {
+        "VIEW_INCOME_LIST": "View Income List",
+        "ADD_INCOME_UPDATE_INCOME": "Add Income & Update Income",
+        "VIEW_DEDUCTION_LIST": "View Deduction List",
+        "ADD_DEDUCTION_UPDATE_DEDUCTION": "Add Deduction & Update Deduction"
+      }
+    },
+    "payroll_settings_employment_type": {
+      "title": "Payroll Settings - Employment type",
+      "features": {
+        "VIEW_EMPLOYMENT_TYPE": "View Employment Type",
+        "UPDATE_EMPLOYMENT_TYPE": "Update Employment Type"
+      }
+    },
+    "payroll_calculation_settings_payroll_period": {
+      "title": "Payroll Calculation Settings - Payroll Period",
+      "features": {
+        "VIEW_PAYROLL_PERIOD_LIST_VIEW_PAYROLL_TABLE": "View Payroll Information (per period)",
+        "CREATE_UPDATE_MANAGE_PAYROLL_PROCESS": "Create & Update & Manage Payroll Process (including calculating, closing, delivering to bank and sending payslip for payroll period)"
+      }
+    },
+    "payroll_authorization_assignment": {
+      "title": "Payroll Authorization Assignment",
+      "features": {
+        "VERIFY_PAYROLL_IN_PROGRESS": "Verify Payroll (per period)",
+        "APPROVE_PAYROLL_IN_PROGRESS": "Approve Payroll (per period)",
+        "EXPORT_REPORT_IN_PROGRESS": "Export Report (per period)"
+      }
+    },
+    "standard_settings_configuration": {
+      "title": "Standard Settings Configuration",
+      "features": {
+        "VIEW_COMPANY_STANDARD_SETTINGS_IN_PROGRESS": "View Company Standard Configuration",
+        "APPLY_STANDARD_SETTINGS_IN_PROGRESS": "Update Company Standard Configuration",
+        "ONBOARDING_SCREEN_IN_PROGRESS": "View Onboarding screen and Set default company configuration"
+      }
+    },
+    "tooltips": {
+      "VIEW_AND_UPDATE_OWN": "Employees are only allowed to update fields predefined by the system.",
+      "UPDATE_ALL_EMPLOYEE_PROFILES_VIEW_APPROVAL_REQUEST_PAGE_EMPLOYMENT_PROFILE_CHANGE_REQUEST": "Only accounts assigned to be employment profile change request approvers can update those requests.",
+      "VERIFY_PAYROLL_IN_PROGRESS": "Only accounts assigned to be payroll table verifier can verify payroll table.",
+      "APPROVE_PAYROLL_IN_PROGRESS": "Only accounts assigned to be payroll table approvers can approve payroll table.",
+      "VIEW_EXPORT_EMPLOYEE_LIST_VIEW_ALL_EMPLOYEE_PROFILES": "Only accounts assigned to be employee profiles & salaries viewer can view all employee profiles & salaries.",
+      "VIEW_PAYROLL_PERIOD_LIST_VIEW_PAYROLL_TABLE": "Only accounts assigned to be payroll viewer can view payroll tables of the company.",
+      "disabled_by": "Automatically enable this when one of the following features is ticked: {{orders}}.",
+      "receive_mail": "Enable this to receive all related emails."
+    }
+  },
+  "not_permit_dialog": {
+    "title": "Permission Removal Not Permitted!",
+    "descriptions": {
+      "VERIFY_PAYROLL_IN_PROGRESS": "There are pending payroll table verification assigned to this role. Please resolve all pending requests before changing this permission.",
+      "APPROVE_PAYROLL_IN_PROGRESS": "There are pending payroll table approval assigned to this role. Please resolve all pending requests before changing this permission.",
+      "UPDATE_ALL_EMPLOYEE_PROFILES_VIEW_APPROVAL_REQUEST_PAGE_EMPLOYMENT_PROFILE_CHANGE_REQUEST": "There are pending salary movement requests or employment profile change requests  assigned to this role. Please resolve all pending requests before changing this permission.",
+      "ERROR_PENDING": "You cannot disable a permission checkbox if there are any pending requests related to or '3.3. Approve Salary Movement and Employment change request' or '5.1. Verify Payroll' or '5.2. Approve Payroll' permissions. Please check for pending requests before attempting to disable the corresponding permission."
+    },
+    "accountant_descriptions": {
+      "UPDATE_ALL_EMPLOYEE_PROFILES_VIEW_APPROVAL_REQUEST_PAGE_EMPLOYMENT_PROFILE_CHANGE_REQUEST": "There are pending employment profile change requests assigned to this account. Please resolve all pending requests before changing this permission.",
+      "VERIFY_PAYROLL_IN_PROGRESS": "There are pending payroll verification  requests assigned to this account. Please resolve all pending requests before changing this permission.",
+      "APPROVE_PAYROLL_IN_PROGRESS": "There are pending payroll approval requests assigned to this account. Please resolve all pending requests before changing this permission.",
+      "ERROR_PENDING": "These accountants are the sole assignees for employment profile change requests or payroll verification/approval requests. Please ensure their tasks are completed or reassigned before removing their permissions:"
+    }
+  },
+  "assigned_permissions": {
+    "title": "Assigned Permissions",
+    "columns": {
+      "assignee_list": "Assignee List"
+    },
+    "permissions": {
+      "VIEW_EXPORT_EMPLOYEE_LIST_VIEW_ALL_EMPLOYEE_PROFILES": "View Employee Profiles & Salary Assignee",
+      "UPDATE_ALL_EMPLOYEE_PROFILES_VIEW_APPROVAL_REQUEST_PAGE_EMPLOYMENT_PROFILE_CHANGE_REQUEST": "Approve Employee Profile Change Assignee",
+      "VIEW_PAYROLL_PERIOD_LIST_VIEW_PAYROLL_TABLE": "View Payroll Table Assignee",
+      "VERIFY_PAYROLL_IN_PROGRESS": "Verify Payroll Assignee",
+      "APPROVE_PAYROLL_IN_PROGRESS": "Approve Payroll Assignee"
+    }
+  },
+  "history": {
+    "title": "History Log",
+    "table": {
+      "version": "Version",
+      "published": "Published",
+      "modified_by": "Modified By"
+    }
+  },
+  "preview": {
+    "title": "Page History - "
+  }
+}

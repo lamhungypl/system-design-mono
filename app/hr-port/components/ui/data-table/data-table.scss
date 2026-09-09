@@ -1,0 +1,28 @@
+.data-table {
+  .after-shadow {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    content: '';
+  }
+
+  .right-shadow {
+    &::after {
+      @extend .after-shadow;
+      right: 0;
+      transform: translateX(100%);
+      box-shadow: inset 10px 0 8px -8px rgba(5, 5, 5, 0.04);
+    }
+  }
+
+  .left-shadow {
+    &::after {
+      @extend .after-shadow;
+      left: 0;
+      transform: translateX(-100%);
+      box-shadow: inset -10px 0 8px -8px rgba(5, 5, 5, 0.04);
+    }
+  }
+}

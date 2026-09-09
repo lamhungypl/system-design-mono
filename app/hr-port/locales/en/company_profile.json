@@ -1,0 +1,64 @@
+{
+  "page_title": "Company Profile",
+  "sidebar": {
+    "company_information": "Company Information"
+  },
+  "button": {
+    "go_to_step_2": "Go to Step 2: Employment Profile",
+    "go_to_step_3": "Go to Step 3: Payroll"
+  },
+  "company_information": {
+    "section_title": "Company Information",
+    "company_information": {
+      "section_title": "Company Information",
+      "company_name": "Company Name",
+      "phone": "Phone",
+      "company_code": "Company Code",
+      "email": "Email",
+      "tax_id_no": "Tax ID No",
+      "industry": "Industry",
+      "sub_industry": "Sub-industry"
+    },
+    "address_information": {
+      "section_title": "Address Information",
+      "address_section": "Country/Province/District/Sub-district",
+      "country": "Country",
+      "province_city": "Province / City",
+      "address": "Address",
+      "district": "District",
+      "postal_code": "Postal Code",
+      "sub_district": "Sub-District"
+    },
+    "account_information": {
+      "section_title": "Account Information",
+      "grid_account_information": "Account Information",
+      "bank_account": "Bank Account",
+      "bank_account_no": "Bank Account No",
+      "bank_company_code": "Bank Company Code",
+      "product_code": "Product Code",
+      "add_bank": "Bank"
+    },
+    "provident_fund": {
+      "section_title": "Provident Fund",
+      "add_provident_fund": "Provident Fund",
+      "grid_provident_fund": "Provident Fund",
+      "provident_fund_code": "PVD Code",
+      "security_company": "Security Company",
+      "employer_paid": "Employer Paid",
+      "employee_paid": "Employee Paid"
+    }
+  },
+  "branch_information": {
+    "section_title": "Branch Information",
+    "branch_code": "Branch Code",
+    "grid_branch_information": "Branch Information",
+    "branch_name": "Branch Name",
+    "status": "Status"
+  },
+  "report_information": {
+    "section_title": "Report Information",
+    "verify_payroll_assignee": "Verify Payroll Assignee",
+    "approve_payroll_assignee": "Approve Payroll Assignee",
+    "salary_movement_approver": "Salary Movement Approver"
+  }
+}

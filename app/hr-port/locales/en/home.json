@@ -1,0 +1,60 @@
+{
+  "page_title": "Home",
+  "section_switcher": {
+    "hr_setting": "HR setting",
+    "progress": "{{completed}}/{{total}} Completed",
+    "payroll_calculation": "Payroll Calculation",
+    "permission_settings": "Permission Settings"
+  },
+  "guide": {
+    "title": "Easy step - by - step set up!",
+    "description": "Just follow our guide and complete all basic info to start calculating payroll",
+    "incomplete_message": "Your {{type}} setting is not finished yet!",
+    "incomplete_type": {
+      "payroll_period": "payroll"
+    }
+  },
+  "check_list_guide": "Please complete setting items below:",
+  "step_progress": "{{completed}}/{{total}} completed",
+  "all_setup": "All setup!",
+  "step1": {
+    "title": "Step 1",
+    "description": "COMPANY PROFILE"
+  },
+  "step2": {
+    "title": "Step 2",
+    "description": "EMPLOYEE PROFILE",
+    "check_list": {
+      "employment_profile": "Employment Profile",
+      "salary_information": "Salary information"
+    }
+  },
+  "step3": {
+    "title": "Step 3",
+    "description": "PAYROLL PERIOD",
+    "check_list": {
+      "income_deduction": "Income / Deduction",
+      "employment_type": "Employment Type",
+      "payroll_period": "Payroll Period"
+    }
+  },
+  "incomplete_employees_dialog": {
+    "columns": {
+      "code": "Code",
+      "employee_name": "Employee"
+    },
+    "profile": {
+      "title": "Employment Profile needs to be completed"
+    },
+    "salary_info": {
+      "title": "Salary information needs to be completed"
+    }
+  },
+  "check_pending_salary_movement": "Salary movement requests are pending your approval, check needed!",
+  "check_pending_employee_change_profile": "Employment profile change requests are pending your approval, check needed!",
+  "payroll_period": "Payroll Period",
+  "report_export": "Report Export",
+  "tooltip": {
+    "income_deduction": "You can reconfigure the data as needed!"
+  }
+}

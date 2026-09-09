@@ -1,0 +1,79 @@
+// Global datepicker styles
+.react-datepicker {
+  font-family: inherit;
+  border: 0;
+  margin: 5px;
+
+  &__header {
+    background-color: #fff;
+    border-bottom: 0;
+  }
+
+  &__week {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__day {
+    width: 2rem;
+    height: 2rem;
+    margin: 0;
+    border-radius: var(--radius);
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+
+    // Keyboard day styling
+    &--keyboard-selected {
+      background-color: transparent;
+    }
+
+    // Current day styling
+    &--today {
+      background-color: hsl(var(--accent));
+      color: hsl(var(--accent-foreground));
+      font-weight: normal;
+    }
+
+    // Selected day styling
+    &--selected {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+
+    // Hover state for days
+    &:not([aria-disabled='true']):hover {
+      border-radius: var(--radius);
+      background-color: hsl(var(--primary) / 0.7);
+      color: hsl(var(--primary-foreground));
+    }
+
+    &-names {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &-name {
+      color: hsl(var(--muted-foreground));
+    }
+
+    &--outside-month {
+      color: hsl(var(--muted-foreground));
+
+      &[aria-selected='true'] {
+        color: hsl(var(--muted-foreground) / 0.5);
+        background-color: hsl(var(--accent) / 0.5);
+      }
+    }
+  }
+
+  // Customize month and year dropdown
+  &__month-dropdown,
+  &__year-dropdown {
+    background-color: #f7fafc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "page_title": "Email Configuration",
+  "page_title_description": "Start to configure email templates as you want.",
+  "tabs": {
+    "email_configuration": "Email Configuration",
+    "payslip_configuration": "Payslip Configuration"
+  },
+  "email_configuration": {
+    "fields": {
+      "email_type": "Email Type",
+      "receiver": "Receiver",
+      "applied_language": "Applied Language",
+      "email_subject": "Email Subject",
+      "email_body_content": "Email Body Content",
+      "name_format": "Name Format"
+    },
+    "email_settings": "Email Settings",
+    "email_types": {
+      "salary_movement_request_1": "Salary Movement Request - [Employee name]",
+      "salary_movement_request_2": "Salary Movement Request - Action Required",
+      "salary_movement_request_3": "Bulk Salary Movement Request",
+      "salary_movement_request_4": "Bulk Salary Movement Request - Action Required",
+      "salary_movement_request_5": "Approve Salary Movement Successfully",
+      "salary_movement_request_6": "Notification of Approved Salary Movements",
+      "salary_movement_request_7": "Salary Movement Rejected",
+      "salary_movement_request_8": "Salary Movement - Approval Needed (Reminder email)",
+      "payroll_verification_request_1": "Payroll Calculation Completed",
+      "payroll_verification_request_2": "Payroll Calculation Completed – Verification Needed",
+      "payroll_approval_request_1": "Payroll Calculation Verified",
+      "payroll_approval_request_2": "Payroll Calculation Verified – Approval Needed",
+      "payroll_approval_request_3": "Payroll Rejected – Update Needed",
+      "payroll_rejected_1": "Payroll Rejected",
+      "payroll_approved_1": "Payroll Calculation Approved",
+      "payroll_approved_2": "Payroll Calculation Approved – Closure Needed",
+      "payroll_closure_1": "Payroll Calculation Closed",
+      "payroll_closure_2": "Payroll Calculation Closed",
+      "delivery_to_bank_1": "Payroll Delivered to Bank",
+      "payslip_email_1": "Company Name + Employee Name+ Payslip for + [Payroll Period]",
+      "payslip_email_2": "[Payroll Period]_Error in Play Slip Mail Request",
+      "alerting_email_1": "Staff with Multiple Late Arrivals",
+      "alerting_email_2": "Staff Leaving Early",
+      "alerting_email_3": "Staff Absent for More Than 3 Days",
+      "alerting_email_4": "Let’s Celebrate Our Attendance Stars!",
+      "alerting_email_5": "Great Job on Your Attendance in (Month - Year)!",
+      "employment_profile_change_request_email_1": "Approval Request for Employment Profile Changes",
+      "employment_profile_change_request_email_2": "Employment Profile Change Request Submitted",
+      "employment_profile_change_request_email_3": "Employment Profile Change Request Approved (Single request approved)",
+      "employment_profile_change_request_email_4": "Employment Profile Change Requests Approved (Multiple requests approved)",
+      "employment_profile_change_request_email_5": "Employee Profile Change Request Approved",
+      "employment_profile_change_request_email_6": "Employment Profile Change Request Rejected (Single request rejected)",
+      "employment_profile_change_request_email_7": "Employment Profile Change Requests Rejected (Multiple requests rejected)",
+      "employment_profile_change_request_email_8": "Employment Profile Change Request Rejected"
+    },
+    "receivers": {
+      "requester": "Requester",
+      "approver": "Approver",
+      "employee": "Employee",
+      "rejecter": "Rejecter",
+      "requester_payroll_calculator": "Requester (Payroll calculator)",
+      "payroll_verifier": "Payroll Verifier",
+      "verifier": "Verifier",
+      "payroll_approver": "Payroll Approver",
+      "payroll_closer": "Payroll Closer",
+      "deliver": "Deliver (Person Delivered Payroll to Bank)",
+      "direct_managers": "Direct managers",
+      "requester_payslip_sender": "Requester (Payslip sender)"
+    },
+    "name_format": {
+      "FIRST_LAST": "FirstName LastName",
+      "LAST_FIRST": "LastName FirstName",
+      "FIRST_INITIAL_LAST": "FirstInitial.LastName (eg: J.Smith)"
+    },
+    "tag_description": {
+      "applicable_tags": "You can apply <span style='color: #006dc6'>{{tags}}</span> in this email template!",
+      "department_employee_name_list_display": "Your department- employee list will look as (applied only for body content):<br>📌 Department: [Department Name]<br>👤 [Employee Name]<br>👤 [Employee Name]"
+    }
+  },
+  "payslip_configuration": {
+    "toggles": {
+      "text_editor": "Text Editor",
+      "logo_editor": "Logo Editor",
+      "background_image": "Background Image",
+      "watermark": "Watermark",
+      "theme_color": "Theme Color"
+    }
+  },
+  "button": {
+    "go_to_step_1": "Go to Step 1: Home"
+  }
+}

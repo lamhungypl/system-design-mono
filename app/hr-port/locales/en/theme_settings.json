@@ -1,0 +1,34 @@
+{
+  "page_title": "Seasonal Icon Settings",
+  "seasonal_icons_picker": "Seasonal Icons Picker",
+  "click_to_preview": "Click to preview",
+  "theme_picker": {
+    "section_title": "Seasonal Icons Picker",
+    "guide": "(Click to preview)"
+  },
+  "theme_scheduler": {
+    "section_title": "Seasonal Icons Scheduler"
+  },
+  "fields": {
+    "icon": "Icon",
+    "from": "From",
+    "to": "To",
+    "effective_date": "Effective date"
+  },
+  "seasonal_icon_setting": {
+    "default": "Default",
+    "new_year_celebration": "New Year's Celebration",
+    "valentine_day": "Valentine Day",
+    "songkran_festival": "Songkran Festival",
+    "halloween": "Halloween",
+    "loy_krathong": "Loy Krathong",
+    "christmas": "Christmas"
+  },
+  "button": {
+    "add_schedule": "Add Icon Scheduler",
+    "go_to_step_1": "Go to Step 1: Home"
+  },
+  "preview_dialog": {
+    "title": "Theme Preview"
+  }
+}

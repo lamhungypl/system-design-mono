@@ -1,0 +1,76 @@
+{
+  "title": "Request Awaiting My Approvals",
+  "search_by": {
+    "employee": "Employee",
+    "approver": "Approver"
+  },
+  "salary_movement": {
+    "title": {
+      "list": "Salary Movement Requests",
+      "list_count": "Salary Movement Requests ({{count}})"
+    },
+    "action": {
+      "approve": "Approve",
+      "reject": "Reject"
+    },
+    "table": {
+      "code": "Code",
+      "employee_name": "Employee Name",
+      "previous_salary": "Previous Salary",
+      "new_salary": "New Salary",
+      "effective_date": "Effective Date",
+      "status": "Status",
+      "requester": "Requester",
+      "created_at": "Created At",
+      "approved_rejected_by": "Modified By",
+      "approval_time": "Modified At",
+      "remark": "Remark",
+      "approver": "Approver"
+    },
+    "validation": {
+      "date": {
+        "gte_start": "Start",
+        "gte_end": "End"
+      }
+    },
+    "status": {
+      "awaiting_approval": "Awaiting for approval",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    }
+  },
+  "employee_change_profile": {
+    "title": {
+      "list": "Employment Profile Change Request",
+      "list_count": "Employment Profile Change Request ({{count}})"
+    },
+    "filters": {
+      "search_by_name_of": "Search by name of"
+    },
+    "action": {
+      "approve": "Approve",
+      "reject": "Reject"
+    },
+    "table": {
+      "code": "Code",
+      "employee_name": "Employee Name",
+      "change_data": "Changed data",
+      "status": "Status",
+      "approver": "Approver",
+      "created_at": "Created At",
+      "modified_by": "Modified By",
+      "modified_at": "Modified At"
+    },
+    "status": {
+      "awaiting_approval": "Awaiting for approval",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "compare_dialog": {
+      "title": "Updated Employment Profile Data Preview",
+      "original_data": "Original Data",
+      "updated_data": "Updated Data",
+      "guide": "Only display tabs which have data edited."
+    }
+  }
+}

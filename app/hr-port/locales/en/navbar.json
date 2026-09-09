@@ -1,0 +1,22 @@
+{
+  "profile": "Profile",
+  "settings": "Settings",
+  "change_password": "Change Password",
+  "sign_out": "Sign out",
+  "hr_dropdown": {
+    "company_profile": "Company Profile",
+    "employee_list": "Employee List",
+    "payroll": "Payroll",
+    "income_deduction": "Income / Deduction",
+    "employment_type": "Employment Type",
+    "payroll_period": "Payroll Period"
+  },
+  "setting_dropdown": {
+    "company_config": "Company Standard Configuration",
+    "theme_settings": "Theme Setting",
+    "email_settings": "Email / Payslip Configuration",
+    "permission_settings": "Permission Settings",
+    "upload_faq": "Upload FAQ",
+    "dashboard_data_insights": "Dashboard Data Insights"
+  }
+}

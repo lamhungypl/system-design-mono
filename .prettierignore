@@ -5,3 +5,7 @@ pnpm-lock.yaml
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+
+# Copied from dynamic-web-app — kept close to the source, and prettier reflow moves
+# @ts-expect-error directives off the lines they suppress. See app/hr-port/PORT-NOTES.md.
+app/hr-port/

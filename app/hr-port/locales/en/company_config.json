@@ -1,0 +1,28 @@
+{
+  "page_title": "Company Standard Configuration",
+  "profile_title": {
+    "company_profile": "Company Profile",
+    "employment_profile": "Employement Profile"
+  },
+  "button": {
+    "add_section": "Add new section",
+    "add_subsection": "Add new Sub-section"
+  },
+  "tooltip": {
+    "profile_title": "You can not edit and delete default items in regional settings.",
+    "payroll_related": "This item relates to payroll calculation. You're not allowed to customize it.",
+    "add_item": "Your newly added item will be placed under this item.",
+    "choose_region": "Your company will be configured regarding to regional standard configuration."
+  },
+  "dynamic_field_table": {
+    "columns": {
+      "item": "Item",
+      "control_type": "Control Type",
+      "required": "Required",
+      "editable": "Editable",
+      "default_value": "Default Value",
+      "enable": "Status",
+      "action": "Action"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "welcome": "Welcome!",
+  "guide": {
+    "welcome": {
+      "line_1": "You can start to configure your company standard configuration here!",
+      "line_2": "Please follow guidelines to configure dynamic settings for your company."
+    },
+    "choose_region": "Please choose your region",
+    "company_not_configured": {
+      "line_1": "Your company has not finished registration yet.",
+      "line_2": "Please contact Company Admin or go back to KOT TA!",
+      "redirect_link": "Back to KOT TA"
+    },
+    "preview_standard_configuration": "Preview standard configuration"
+  },
+  "company_code": "Company code",
+  "company_name": "Company name",
+  "tooltip": {
+    "choose_region": "Your company will be configured regarding to regional standard configuration"
+  },
+  "button": {
+    "set_default": "Default configure as Regional Standard Configuration",
+    "customize": "Customize Company Standard Configuration"
+  }
+}

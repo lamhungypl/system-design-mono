@@ -1,0 +1,103 @@
+{
+  "page_title": "Dashboard Data Insights",
+  "sidebar": {
+    "payroll_elements": "Payroll Elements",
+    "element_usage": "Element Usage",
+    "average_salary": "Average Salary",
+    "manual_mapping": "Manual Mapping",
+    "category_management": "Category Management"
+  },
+  "filter": {
+    "year": "Year",
+    "month": "Month",
+    "country": "Country",
+    "industry": "Industry",
+    "nationality": "Nationality",
+    "data_type": "Data Type",
+    "is_common_benefit": "Only Common Benefit",
+    "filter_type": "Filter By"
+  },
+  "element_usage": {
+    "page_title": "Income & Deduction & Common Benefit Usages (Pareto Chart)",
+    "chart": {
+      "numbers_of_employees_using_the_income": "Numbers of employees using the income",
+      "numbers_of_employees_using_the_deduction": "Numbers of employees using the deduction",
+      "cumulative": "% Cumulative",
+      "income": "Income",
+      "deduction": "Deduction"
+    },
+    "button": {
+      "go_to_manual_mapping": "Go to: Manual Mapping"
+    },
+    "warning_unknown_category": "Unknown category might cause data inaccuracy, please resolve it here!"
+  },
+  "category_management": {
+    "page_title": "Category Management",
+    "table": {
+      "columns": {
+        "category": "Category",
+        "updated_by": "Updated By",
+        "updated_at": "Updated At"
+      },
+      "mapping_by": {
+        "manual_adding": "Manual Adding",
+        "ai_adding": "AI Adding"
+      }
+    },
+    "button": {
+      "add_new_category": "Add New Category"
+    },
+    "add_edit_category_dialog": {
+      "title_add": "Add New Category",
+      "title_edit": "Edit Category",
+      "form": {
+        "name": "Category Name",
+        "items": "Items"
+      }
+    }
+  },
+  "data_type_options": {
+    "income": "Income",
+    "deduction": "Deduction"
+  },
+  "manual_mapping": {
+    "page_title": "Income & Deduction & Common Benefit Category Mapping",
+    "table": {
+      "columns": {
+        "name": "Raw Labels",
+        "data_type": "Data Type",
+        "is_common_benefit": "Common Benefit"
+      },
+      "cell": {
+        "status": {
+          "mapped": "Mapped",
+          "unmapped": "Unmapped"
+        }
+      }
+    },
+    "button": {
+      "move_to": "Move to"
+    },
+    "move_to_category_dialog": {
+      "title": "Move to",
+      "form": {
+        "name": "Category Name",
+        "items": "Items"
+      }
+    },
+    "tooltip": {
+      "warning_effective_time": "Changes will be reflected on the dashboard in 24 hours.",
+      "common_benefit_header": "Category will be counted as Common Benefit if all items inside are Common Benefit"
+    }
+  },
+  "average_salary": {
+    "page_title": "Average Monthly Salary",
+    "chart": {
+      "currency": "Bath"
+    }
+  },
+  "filter_by_options": {
+    "industry": "Industry",
+    "company": "Company"
+  }
+}

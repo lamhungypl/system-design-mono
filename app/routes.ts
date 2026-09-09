@@ -5,6 +5,11 @@ export default [
 
   route("prd/step-by-step-grader", "routes/prd-step-by-step-grader.tsx"),
 
+  route("playground", "routes/playground-layout.tsx", [
+    index("routes/playground/index.tsx"),
+    route("table-modal-changes", "routes/playground/table-modal-changes.tsx"),
+  ]),
+
   route("templates", "routes/templates-layout.tsx", [
     index("routes/templates/index.tsx"),
     route("dashboard/analysis", "routes/templates/dashboard-analysis.tsx"),
@@ -18,7 +23,10 @@ export default [
     route("list/card-list", "routes/templates/list-card.tsx"),
     route("list/search/articles", "routes/templates/list-search-articles.tsx"),
     route("list/search/projects", "routes/templates/list-search-projects.tsx"),
-    route("list/search/applications", "routes/templates/list-search-applications.tsx"),
+    route(
+      "list/search/applications",
+      "routes/templates/list-search-applications.tsx"
+    ),
     route("profile/basic", "routes/templates/profile-basic.tsx"),
     route("profile/advanced", "routes/templates/profile-advanced.tsx"),
     route("result/success", "routes/templates/result-success.tsx"),

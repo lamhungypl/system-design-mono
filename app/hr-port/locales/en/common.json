@@ -1,0 +1,263 @@
+{
+  "errors_label": {
+    "404": "404 Not found",
+    "maintenance": "Oops! We're under maintenance - we’ll back soon!",
+    "click_here_to_sign_in": "Click here to sign-in"
+  },
+  "table": {
+    "columns": {
+      "status": "Status",
+      "action": "Action",
+      "year": "Year"
+    },
+    "no_data": "No data",
+    "pagination": {
+      "displayed_rows": "{{from}}-{{to}} of {{count}} items",
+      "rows_per_page": "Rows per page"
+    },
+    "selected": "Selected ({{count}})",
+    "select_deselect_all": "Select/Deselect All",
+    "reset_filters": "Reset filters ({{count}})",
+    "reset_filters_no_count": "Reset filters",
+    "cell": {
+      "status": {
+        "history_log": {
+          "SUCCESS": "Success",
+          "ERROR": "Fail"
+        }
+      }
+    }
+  },
+  "validation": {
+    "required": {
+      "input": "Please fill in {{field}}.",
+      "select": "Please choose a {{field}}."
+    },
+    "string": {
+      "pattern": "Please complete {{field}} with correct format.",
+      "url": "Invalid URL.",
+      "existed": "This value already exists. Please enter a unique value."
+    },
+    "number": {
+      "max": "The value cannot exceed {{max}}."
+    },
+    "date": {
+      "gt": "{{end}} date must be greater than {{start}} date",
+      "gt_field": "The {{field}} must be greater than 0 hours and 0 minutes",
+      "gte": "{{end}} date must be equal or greater than {{start}} date",
+      "between": "{{field}} must be between {{start}} and {{end}}",
+      "default_rule": "The year must be between 1900 and 100 years from the current year.",
+      "1st_month": "The request date must be the 1st of the month. Once a request is made after the 1st, selecting the 1st of this month is not allowed.",
+      "same_month_same_salary": "The new salary cannot be the same as the current salary of the selected month.",
+      "overlap": "The {{field}} has an overlap."
+    }
+  },
+  "auth_errors": {
+    "TOKEN_INVALID": "Token Invalid",
+    "TOKEN_TIMEOUT": "Token Timeout",
+    "ACCESS_DENIED": "Sorry, you don't have permission to access Payroll!"
+  },
+  "toast_messages": {
+    "success": {
+      "title": "Success!",
+      "saved": "Saved successfully.",
+      "reset": "Data has been reset.",
+      "changed": "Your changes have been saved.",
+      "imported": "File imported successfully. You can now check import results.",
+      "exported": "File exported successfully.",
+      "movement": "Movement has been created.",
+      "draft": "Your draft is saved.",
+      "added": "Added data successfully.",
+      "company": "Company configuration has been set up successfully",
+      "send": "Send request successfully.",
+      "payroll_period": "Payroll periods are created successfully.",
+      "payroll_calculated": "Payroll has been calculated successfully",
+      "payroll_verify": "Payroll has been verified successfully",
+      "payroll_approve": "Payroll has been approved successfully",
+      "payroll_close": "Payroll has been closed successfully",
+      "deleted": "Delete data successfully.",
+      "payroll_rejected": "Payroll rejected",
+      "approval": {
+        "salary": {
+          "information": {
+            "message": "Approve salary {{n}} movement successfully."
+          }
+        },
+        "employee_change_request": {
+          "rejected": "Reject employment profile change request successfully.",
+          "approved": "Approve employment profile change request successfully."
+        }
+      },
+      "reject": {
+        "salary": {
+          "information": {
+            "message": "Reject salary {{n}} movement successfully."
+          }
+        }
+      },
+      "send_payslip_email_success": "Payslips are being prepared for sending. Please check your mailbox.",
+      "import_file_success": "File imported successfully. You can now check import results.",
+      "restore": "Restore data successfully."
+    },
+    "error": {
+      "title": "Error",
+      "system": "Service is not available at the moment, please contact support.",
+      "required_all": "Please complete all required fields.",
+      "import": "Failed to import. Please try again.",
+      "attendance_data": "Some employees’ attendance data haven’t closed yet. Please check again in Time Attendance",
+      "no_employee_selected": "No employee is selected to send email",
+      "over_max_rows_selected": "Cannot send to more than 100 recipients",
+      "import_file_fail": "Fail to import file. Please check again in CSV error file.",
+      "file_format_not_csv": "The file format is not CSV. Please provide a CSV file.",
+      "file_size_over": "The file size exceeds {{size}} MB, please reduce file size.",
+      "file_required": "Please upload a file to import!",
+      "invalid_file_format": "Invalid file format. File format should be {{formats}} and smaller than {{size}}",
+      "invalid_file_size": "Invalid file format. File format should be {{formats}} and smaller than {{size}}",
+      "too_many_file": "You can only upload 1 file at a time.",
+      "no_change_data": "No changes detected. Please update the data before sending a request.",
+      "exclusive": "The data has already been updated by other person.",
+      "empty_file": "Imported file can't be empty.",
+      "exclusive_employee_change_profile": "The data in employment profile change request has been updated again. Please reload the data.",
+      "choice_approver_no_permission": "Selected admins no longer have permission."
+    }
+  },
+  "button": {
+    "update": "Update",
+    "save": "Save",
+    "draft": "Save as draft",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "add": "Add",
+    "delete": "Delete",
+    "reset": "Reset",
+    "yes": "Yes",
+    "no": "No",
+    "discard": "Yes, discard",
+    "keep": "Keep editing",
+    "export_files": "Export files",
+    "export_file": "Export file",
+    "re_calculate": "Re-calculate",
+    "apply": "Apply",
+    "preview": "Preview",
+    "next": "Next",
+    "previous": "Previous",
+    "download": "Download",
+    "send_payslip_email": "Send payslip via email",
+    "confirm_and_send_email": "Confirm and send email",
+    "import_files": "Import files",
+    "export_to_excel": "Export to Excel",
+    "required_toggle": {
+      "all": "All",
+      "required": "Required"
+    },
+    "send_request": "Send Request",
+    "restore": "Restore",
+    "ok": "OK",
+    "return_to_default": "Return to Default"
+  },
+  "placeholder": {
+    "input": "Type",
+    "select": "Choose",
+    "edited_items": "Edited Items",
+    "search": "Search",
+    "search_code_name": "Search by code, name",
+    "search_name": "Search by name",
+    "start_date": "Start date",
+    "end_date": "End date",
+    "select_all": "Select All",
+    "select_something": "Select something",
+    "calendar": "DD/MM/YYYY"
+  },
+  "dialog_confirm": {
+    "title": "Confirmation",
+    "description": {
+      "add": "Are you sure you want to add?",
+      "update": "Are you sure you want to update?",
+      "import": "Are you sure you want to import file?",
+      "delete": "Are you sure you want to delete?",
+      "send_request": "Are you sure you want to send the request?",
+      "approve": "Are you sure you want to approve?",
+      "reject": "Are you sure you want to reject?",
+      "send_payslip_email": "Are you sure you want to send?",
+      "restore": "Are you sure you want to restore the data?",
+      "reset_to_default": "Are you sure you want to reset the data to its default version?"
+    },
+    "warning": {
+      "send_payslip_email": "Unverified emails in KING OF TIME will not be sent!"
+    }
+  },
+  "dialog_confirm_cancel": {
+    "title": "Discard changes?",
+    "description": "Changes that you made will not be saved."
+  },
+  "status": {
+    "ACTIVE": "Active",
+    "DISABLED": "Disable",
+    "INACTIVE": "Inactive"
+  },
+  "control_type": {
+    "FIELD_TEXT": "Text Field",
+    "DROPDOWN_LIST": "Dropdown List",
+    "DROPDOWN_LIST_SINGLE": "Dropdown List (Single choice)",
+    "DROPDOWN_LIST_MULTIPLE": "Dropdown List (Multiple choice)",
+    "TOGGLE": "Toggle",
+    "CALENDAR_PICKER": "Calendar Picker",
+    "RADIO_BUTTONS": "Radio Buttons",
+    "CHECKBOXES": "Checkboxes",
+    "SLIDERS": "Sliders",
+    "GRID": "Grid",
+    "ADDRESS_SECTION": "Address Section",
+    "FILE_UPLOADER": "File Uploader"
+  },
+  "error": {
+    "internal_server_error": {
+      "message": "System Error!"
+    },
+    "exclusive_data_exception": {
+      "message": "The data has been updated. Please refresh to access the latest version."
+    },
+    "exclusive_data_exception_auto_reload": {
+      "message": "The data has already been updated by other person"
+    }
+  },
+  "tooltip": {
+    "payroll_calculation": {
+      "payroll_related_input": "Edited amount will replace the auto - calculated amount by the system"
+    },
+    "click_to_edit": "Click to edit"
+  },
+  "select_option": {
+    "all": "All",
+    "not_found": "No options found."
+  },
+  "payment": {
+    "bank": "Bank",
+    "cash": "Cash"
+  },
+  "uploader": {
+    "import": "Import File",
+    "drag_or_click": "Drag or click to upload file",
+    "choose_file": "Choose file",
+    "supported_formats": "Supported formats: {{formats}}",
+    "file_size_under": "File size under: {{size}}",
+    "uploaded": "File uploaded"
+  },
+  "dynamic_table": {
+    "add": "Add {{itemText}}",
+    "edit": "Edit {{itemText}}"
+  },
+  "file_name": {
+    "blank_template_excel": "Blank_Template_Excel_{{date}}",
+    "existing_data_template_excel": "Import_File_With_Existing_Data_Template_Excel_{{date}}"
+  },
+  "synchronizing_data": "Synchronizing data is in progress, please wait for a moment!",
+  "time_duration": "{{years}}y {{months}}mo {{days}}d",
+  "date": "Date",
+  "abbreviated_date_format": "dd MMM yyyy",
+  "date_format": "dd/MM/yyyy",
+  "date_format_with_time": "dd/MM/yyyy HH:mm",
+  "date_format_with_order": "MMMM do yyyy",
+  "app_title": {
+    "default": "KING OF TIME HR&PR"
+  }
+}
